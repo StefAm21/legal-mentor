@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  require 'mercadopago'
+  # require 'mercadopago'
   before_action :set_question, only: %i[new create edit update process]
   before_action :set_answer, only: %i[show edit update destroy process paid]
   def index
