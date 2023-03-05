@@ -6,18 +6,32 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-require "open-uri"
-
+puts "creando usuario comun"
 # Create common USER
 common_user = User.create!(
   email: 'user@example.com',
   password: 'password'
 )
 
+puts "creando questions"
 # Create questions for common_user
-common_user.questions.create!(
+Question.create!(
   title: 'How can I organize my taxes?',
   description: 'I am building my start up................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
-  category: " ",
-  status: " "
+  category: "Tax",
+  user: common_user
 )
+
+# common_user.questions.create!(
+#   title: 'How can I do correctly my divorce papers?',
+#   description: 'I am ending my marriage................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
+#   category: " ",
+#   status: " "
+# )
+
+# common_user.questions.create!(
+#   title: 'How can I do a succession of lands?',
+#   description: 'I am inhariting some lands................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
+#   category: " ",
+#   status: " "
+# )
