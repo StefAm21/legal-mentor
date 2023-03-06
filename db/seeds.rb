@@ -136,3 +136,22 @@ new_user.questions.each do |question|
   )
 end
 
+
+puts "creating fake reviews"
+reviews = [
+  { rating: 4, comment: "This is a great product, I highly recommend it!" },
+  { rating: 5, comment: "I've never been so impressed with a product before, it exceeded all my expectations!" },
+  { rating: 3, comment: "It's a decent product, but I've had better." },
+  { rating: 2, comment: "I was really disappointed with this product, it didn't live up to the hype." },
+  { rating: 4, comment: "Overall, I'm pretty satisfied with this product." },
+  { rating: 1, comment: "This is the worst product I've ever used, I wouldn't recommend it to anyone." },
+  { rating: 5, comment: "I can't say enough good things about this product, it's simply amazing!" },
+  { rating: 3, comment: "It's an okay product, but I wouldn't say it's anything special." },
+  { rating: 4, comment: "I'm pretty happy with this product, it does what it's supposed to do." },
+  { rating: 2, comment: "I regret buying this product, I wish I had chosen something else." }
+]
+
+reviews.each do |review|
+  Review.create!(review)
+end
+
