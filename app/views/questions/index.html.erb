@@ -82,13 +82,13 @@
             <div class="d-flex align-items-center">
               <span class="edit-icon mr-2">
                 <%= link_to "#", class: "btn btn-ghost" do %>
-                  <i class="fa fa-pencil fa-sm"></i>
+                  <i class="fa fa-pencil fa-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal"></i>
                   <%# <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button> %>
                 <% end %>
               </span>
               <span class="delete-icon">
                 <%= link_to "#", class: "btn btn-ghost" do %>
-                  <i class="fa fa-trash fa-sm"></i>
+                  <i class="fa fa-trash fa-sm"></i> <%# Aca va el destroy action de la question solo si NO fue respondida%>
                 <% end %>
               </span>
             </div>
@@ -99,5 +99,3 @@
   </div>
 
 </div>
-
-
