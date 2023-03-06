@@ -7,3 +7,43 @@
 </form>
 
 <%#= button_to "Contratar", paid_path(@answer) %>
+<%# ANSWER VIEW %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-left">Question Title</h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="https://via.placeholder.com/150" class="rounded-circle mr-3" alt="Lawyer Avatar">
+          <div>
+            <h5 class="mb-2">Lawyer Full Name</h5>
+            <div class="d-flex align-items-center">
+              <p class="mb-2">Rating: </p>
+              <i class="fa fa-star text-warning"></i>
+              <p class="mb-2"><b>4.5</b></p>
+            </div>
+            <p class="mb-2">Avg time of answer: <b>2 hours</b></p>
+            <p class="mb-2">Price: <b>$50</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Description or comment of the lawyer explaining why he is capable of responding to the question.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between align-items-center mt-4 mx-2">
+        <button class="btn btn-danger mr-3">Rechazar</button>
+        <button class="btn btn-success">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
