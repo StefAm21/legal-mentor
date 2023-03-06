@@ -90,7 +90,7 @@ common_user.questions.each do |question|
     price: 100,
     comment: 'I am interested in answering this question. I am more than qualified to provide a thorough response.',
     avg_time: 2,
-    user: lawyer,
+    user: lawyer
   )
 end
 
@@ -152,6 +152,5 @@ reviews = [
 ]
 
 reviews.each do |review|
-  Review.create!(review)
+  lawyer.Review.create!(review)
 end
-
