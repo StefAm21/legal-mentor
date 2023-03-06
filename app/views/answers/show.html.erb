@@ -1,14 +1,31 @@
+<!--
+Instrucciones sobre botones PARA USER con condiciones:
+1:
+  2 botones uno para volver y otro para contratar.
+  Condicion: Solo puede aparecer si se cumple question.choosing && answer.sent
+2:
+  -Se oculta el boton volver y contratar
+  -Se muestra boton Pagar.
+  Condicion: Si se cumple question.choosing && answer.accepted
+3:
+  -Se oculta el pagar, y aparece SOLO PARA LAWYER el submit para adjuntar pdf
+  condicion: question.paid && answer.paid && current.user.lawyer
+4:
+  -Aparecen botones para descargar solucion y para dejar review.
+  condicion: question.answered && answer.ended
+-->
+
 <h1>Answers#show</h1>
 <p>Find me in app/views/answers/show.html.erb</p>
 <%= button_to "Contratar", choosed_path(@answer), method: :get %>
+<%= button_to "Volver", question_path(@question), method: :get %>
 
-<form action="/procesar-pago" method="POST">
+<%# Este form es el boton pagar de mercado pago! %>
+<form action="/answers/<%=@answer.id%>/procesar-pago" method="POST">
     <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
     </script>
 </form>
-
-<%#= button_to "Contratar", paid_path(@answer) %>
-
+<%# Este es el form para adjuntar un archivo a la respuesta %>
 <div class="container">
   <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -19,13 +36,23 @@
       <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
     </div>
   <% end %>
+
+    <%# <h3> Previsualización:</h3> %>
+  <%# Este es el preview %>
+  <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
+  <% if @answer.photo.attach? %>
+    <%= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+  <% end %>
+
+  <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
+
+
 </div>
 
   <%#= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>
   <%#= cl_video_tag @answer.photo.key, resource_type: :image, format: 'pdf' %>
   <%#= cl_image_tag "#{@answer.photo.key}.jpg", pages: "1-3" %>
-  <%# <h3> Previsualización:</h3> %>
-  <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
+
 
   <%#= cl_image_tag("https://res.cloudinary.com/dcfoaujd5/image/fetch/w_800,h_600,c_fill,g_auto,q_auto,f_auto/page_1/#{@answer.photo.key}", alt: "PDF thumbnail") %>
   <%#= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>
@@ -34,12 +61,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <%= <h1 class="text-left">@question.title</h1> %>
+      <h1 class="text-left"><%= @question.title %></h1>
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
           <img src="https://via.placeholder.com/150" class="rounded-circle mr-3" alt="Lawyer Avatar">
           <div>
-            <%= <h5 class="mb-2">@answer.name</h5> %>
+            <h5 class="mb-2"><%= @answer.user.name %></h5>
             <div class="d-flex align-items-center">
               <p class="mb-2">Rating: </p>
               <i class="fa fa-star text-warning"></i>
