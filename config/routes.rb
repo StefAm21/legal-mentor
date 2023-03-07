@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :questions do
-    resources :answers, only: :create
+    resources :answers, only: :create do
+      resources :reviews, only: %i[new create]
+    end
   end
 end
