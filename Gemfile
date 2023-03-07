@@ -81,3 +81,5 @@ end
 #Project files
 
 gem "cloudinary"
+
+gem "aasm"

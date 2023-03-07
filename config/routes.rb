@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :answers, only: :create do
       resources :reviews, only: %i[new create]
     end
+    resources :answers, only: %i[new create show]
   end
+  resources :answers, only: %i[index edit update destroy]
 end
