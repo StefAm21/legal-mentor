@@ -6,6 +6,6 @@ class Answer < ApplicationRecord
   has_one_attached :photo
 
   # Validations
-  validate :price, :comment, :avg_time, :payment_status, :user, :question, presence: true
+  validates :price, :comment, :avg_time, :payment_status, :user, :question, presence: true
 
 end
