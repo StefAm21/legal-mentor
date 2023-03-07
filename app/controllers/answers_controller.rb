@@ -12,11 +12,11 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @answer.question_id = @question.id
+    @answer.question = @question
     @answer.user = current_user
     # @answer.status = "pending"
     if @answer.save
-      redirect_to answer_path(@answer)
+      redirect_to question_path(@question)
     else
       render :new, status: :unprocessable_entity
     end

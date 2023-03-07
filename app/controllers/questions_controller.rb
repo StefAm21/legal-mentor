@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
     @user = User.find(current_user.id)
     @question = Question.new(question_params)
     @question.user = current_user
+    
     if @question.save
       redirect_to question_path(@question)
     else

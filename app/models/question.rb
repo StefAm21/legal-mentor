@@ -7,6 +7,7 @@ class Question < ApplicationRecord
 
   include AASM
 
+  aasm_column :status
   aasm do
     state :waiting, initial: true
     state :choosing, :paid, :answered, :ended, :discarted
@@ -28,7 +29,7 @@ class Question < ApplicationRecord
     end
 
     event :discard do
-      transtions from: [:waiting, :choosing], to: :discarted
+      transitions from: [:waiting, :choosing], to: :discarted
     end
   end
   # waiting, con_respuestas, pagada, respondida, terminada
