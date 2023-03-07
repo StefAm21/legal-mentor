@@ -64,8 +64,10 @@ Instrucciones sobre botones PARA USER con condiciones:
 
 <%# 1 %>
 <% if @question.choosing? && @answer.sent? && current_user == @question.user%>
-  <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
-  <%= button_to "Volver", question_path(@question), method: :get %>
+  <div class= "d-flex justify-content-between align-items-center">
+    <%= button_to "Volver", question_path(@question), method: :get %>
+    <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
+  </div>
 <% end %>
 
 <%# 2 %>
