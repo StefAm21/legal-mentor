@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :questions do
-    resources :answers, only: :create
+    resources :answers, only: [:new, :create, :show]
   end
+  resources :answers, only: [:index, :edit, :update, :destroy]
 end
