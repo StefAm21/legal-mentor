@@ -13,7 +13,8 @@
             <h5 class="card-title"><%= truncate(answer.question.title, length: 50) %></h5>
             <p class="card-text"><%= truncate(answer.comment, length: 70) %></p>
             <hr>
-            <%= link_to 'View details', question_answer_path(answer.question, answer), class: 'button-81' %>
+            <%# <%= link_to 'View details', question_answer_path(answer.question, answer), class: 'button-81'%>
+            <%= button_to "Ver detalles", question_answer_path(answer.question, answer), method: :get, class: "button-81" %>
           </div>
         </div>
       </div>

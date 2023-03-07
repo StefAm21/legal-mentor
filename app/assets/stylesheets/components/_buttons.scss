@@ -267,10 +267,10 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   border-width: thin 1px;
   border-radius: 5px;
   box-sizing: border-box;
-  color: #0d172a;
+  // color: #0d172a;
   cursor: pointer;
   display: inline-block;
-  font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  // font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 15px;
   font-weight: 600;
   line-height: 1;
@@ -284,9 +284,9 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
+// #1e293b
 .button-81:hover {
-  background-color: #1e293b;
+  background-color: #333333;
   color: #fff;
 }
 
