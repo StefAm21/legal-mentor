@@ -7,5 +7,4 @@ class Answer < ApplicationRecord
 
   # Validations
   validates :price, :comment, :avg_time, :payment_status, :user, :question, presence: true
-
 end
