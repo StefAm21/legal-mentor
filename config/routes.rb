@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :questions do
-    resources :answers, only: :create do
+    resources :answers, only: [:create] do
       resources :reviews, only: %i[new create]
     end
     resources :answers, only: %i[new create show]
   end
   resources :answers, only: %i[index edit update destroy]
+
+  post "answers/:id/paid", to: "answers#paid", as: :paid
 end
