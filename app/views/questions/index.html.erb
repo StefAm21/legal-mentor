@@ -1,53 +1,71 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
-<%# <div class="container">
-  <h1>Publica tu producto:</h1>
-  <div class="row">
-    <div class="col-3"></div>
+<h1>Mis preguntas</h1>
+<%# <p>Find me in app/views/questions/index.html.erb</p> %>
 
-    <div class="col-6 border border-dark p-3 mb-3">
-      <%= render "form" %>
-    <%# </div>
-    <p></p>
-    <div class="col-3"></div>
-  </div>
+<div class="container">
+  <%# <h1 class="text-center">Marketplace</h1> %>
+  <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button>
+  <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat" data-controller="modal" data-action="click->modal#openModal">Open modal for @fat</button> %>
+  <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" data-controller="modal" data-action="click->modal#openModal">Open modal for @getbootstrap</button> %>
 
-</div> %>
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button>
-<%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat" data-controller="modal" data-action="click->modal#openModal">Open modal for @fat</button> %>
-<%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" data-controller="modal" data-action="click->modal#openModal">Open modal for @getbootstrap</button> %>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Haz tu pregunta</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%# <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Pregunta:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Contexto:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form> %>
-        <form class="simple_form new_question" id="new_question" novalidate="novalidate" action="/questions" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xqqv2tmlIS8UdrnikZvjN-zry_0DpGCjSS4OhT9JoZkJwIa-iHW3IwaAbwbYZe8bjY0OyjrRSx0QiK3eS4y2SQ" autocomplete="off">
-          <div class="mb-3 string required question_title"><label class="form-label string required" for="question_title">Pregunta <abbr title="required">*</abbr></label><input class="form-control string required" required="required" aria-required="true" type="text" name="question[title]" id="question_title"></div>
-          <div class="mb-3 text required question_description"><label class="form-label text required" for="question_description">Descripción <abbr title="required">*</abbr></label><textarea class="form-control text required" required="required" aria-required="true" name="question[description]" id="question_description"></textarea></div>
-            <select class="form-control" required="required" name="question[category]" id="question_category"><option value="">Selecciona una categoría</option>
-            </select>
-            <%# <input type="submit" name="commit" value="Publicar pregunta" class="btn btn btn-flat" data-disable-with="Create Question"> %>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary" data-action="click->modal#sendMessage">Confirmar pregunta</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Haz tu pregunta</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%# <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Pregunta:</label>
+              <input type="text" class="form-control" id="recipient-name">
             </div>
-        </form>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Contexto:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form> %>
+          <form class="simple_form new_question" id="new_question" novalidate="novalidate" action="/questions" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xqqv2tmlIS8UdrnikZvjN-zry_0DpGCjSS4OhT9JoZkJwIa-iHW3IwaAbwbYZe8bjY0OyjrRSx0QiK3eS4y2SQ" autocomplete="off">
+            <div class="mb-3 string required question_title"><label class="form-label string required" for="question_title">Pregunta <abbr title="required">*</abbr></label><input class="form-control string required" required="required" aria-required="true" type="text" name="question[title]" id="question_title"></div>
+            <div class="mb-3 text required question_description"><label class="form-label text required" for="question_description">Descripción <abbr title="required">*</abbr></label><textarea class="form-control text required" required="required" aria-required="true" name="question[description]" id="question_description"></textarea></div>
+              <select class="form-control" required="required" name="question[category]" id="question_category"><option value="">Selecciona una categoría</option>
+              </select>
+              <%# <input type="submit" name="commit" value="Publicar pregunta" class="btn btn btn-flat" data-disable-with="Create Question"> %>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" data-action="click->modal#sendMessage">Confirmar pregunta</button>
+              </div>
+          </form>
+        </div>
       </div>
     </div>
+  </div>
+
+  <%# <div class="row mt-5"> %>
+    <%# <% 6.times do %>
+      <%# <div class="col-md-4 mb-4"> %>
+        <%# <div class="card"> %>
+          <%# <div class="card-body"> %>
+            <%# <h5 class="card-title">Pregunta</h5> %>
+            <%# <p class="card-text">This is a sample card with some lorem ipsum text.</p> %>
+            <%# <a href="#" class="btn btn-primary">Ver mas</a> %>
+          <%# </div> %>
+        <%# </div> %>
+      <%# </div> %>
+    <%# <% end %>
+  <%# </div> %>
+
+  <div class="row mt-5">
+    <% current_user.questions.each do |question| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= question.title %></h5>
+            <p class="card-text"><%= question.description %></p>
+            <%= link_to 'View details', question_path(question), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
