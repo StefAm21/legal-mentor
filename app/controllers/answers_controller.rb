@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  require 'mercadopago'
+  # require 'mercadopago'
   before_action :set_question, only: %i[new create edit update process]
   before_action :set_answer, only: %i[show edit update destroy process paid]
   def index
@@ -59,9 +59,11 @@ class AnswersController < ApplicationController
   # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
   @preference_id = preference['id']
 
-
-    @answer.paid
-    @questions.choosed
+  # if repsuesta es approve
+  #   @answer.pay
+  #   @questions.choosed
+  #   @answer.save
+  #   @question.save
   end
 
   def choosed

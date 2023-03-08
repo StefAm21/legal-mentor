@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :answers, only: %i[index edit update destroy]
 
   post "answers/:id/paid", to: "answers#paid", as: :paid
+  get "/general", to: "questions#general", as: :general
 end

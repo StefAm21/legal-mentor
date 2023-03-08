@@ -2,8 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @questions = Question.all
+    @questions = Question.find_all_questions
     @question = Question.new
+  end
+
+  def general
+    @questions = Question.find_all_questions
   end
 
   def new
