@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: %i[new create edit update]
-  before_action :set_answer, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[new create edit update process]
+  before_action :set_answer, only: %i[show edit update destroy process]
   def index
     @answers = Answer.all
     # Aca quizas usemos gema cancancan
@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.question = @question
     @answer.user = current_user
+    @question.new_answer if @question.waiting?
     # @answer.status = "pending"
     if @answer.save
       redirect_to question_path(@question)
@@ -23,6 +24,27 @@ class AnswersController < ApplicationController
   end
 
   def show
+  end
+
+  # def process
+  #   if params[:condition] == "choosed"
+  #     @answer.accept
+  #   else
+  #     @answer.reject
+  #   end
+  # end
+  def paid
+    @answer.paid
+    @questions.choosed
+  end
+
+  def choosed
+    @answer.accept
+    # rechazar el resto de Answers que habia para esa pregunta
+  end
+
+  def rejected
+    @answer.reject
   end
 
   def edit
@@ -36,8 +58,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  # def status
-  # end
 
   def destroy
     @answer.destroy

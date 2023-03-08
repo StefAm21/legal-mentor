@@ -16,19 +16,19 @@ class Question < ApplicationRecord
       transitions from: :waiting, to: :choosing
     end
 
-    event :choose do
+    event :choosed do # Choosed and get paid
       transitions from: :choosing, to: :paid
     end
 
-    event :answer_delivered do
+    event :answer_delivered do # With attachment
       transitions from: :paid, to: :answered
     end
 
-    event :finalize do
+    event :finalize do # Leave with review
       transitions from: :answered, to: :ended
     end
 
-    event :discard do
+    event :discard do # Rejected
       transitions from: [:waiting, :choosing], to: :discarted
     end
   end
