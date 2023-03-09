@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-  # require 'mercadopago'
   before_action :set_question, only: %i[new create edit update process]
   before_action :set_answer, only: %i[show edit update destroy process paid]
   def index
@@ -36,8 +35,8 @@ class AnswersController < ApplicationController
   #   end
   # end
   def paid
-  # SDK de Mercado Pago
   require 'mercadopago'
+  # SDK de Mercado Pago
   # Agrega credenciales
   sdk = Mercadopago::SDK.new('TEST-5635626968426827-030609-8da4baa7bbfe680d16a205b3c2db1afb-325153089')
 
@@ -65,6 +64,7 @@ class AnswersController < ApplicationController
   #   @answer.save
   #   @question.save
   end
+
 
   def choosed
     @answer.accept
