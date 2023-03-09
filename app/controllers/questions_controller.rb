@@ -2,7 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @questions = Question.all
+    @questions = Question.find_all_questions
+    @question = Question.new
+  end
+
+  def general
+    @questions = Question.find_all_questions
   end
 
   def new
@@ -13,6 +18,7 @@ class QuestionsController < ApplicationController
     @user = User.find(current_user.id)
     @question = Question.new(question_params)
     @question.user = current_user
+
     if @question.save
       redirect_to question_path(@question)
     else
