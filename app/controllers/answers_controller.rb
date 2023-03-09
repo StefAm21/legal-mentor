@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
   # SDK de Mercado Pago
   require 'mercadopago'
   # Agrega credenciales
-  sdk = Mercadopago::SDK.new(ENV['MERCADOPAGO_TOKEN'])
+  sdk = Mercadopago::SDK.new('TEST-5635626968426827-030609-8da4baa7bbfe680d16a205b3c2db1afb-325153089')
 
   # Crea un objeto de preferencia
   preference_data = {
