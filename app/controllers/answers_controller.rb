@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
+  # require 'mercadopago'
   before_action :set_question, only: %i[new create edit update process]
-  before_action :set_answer, only: %i[show edit update destroy process]
+  before_action :set_answer, only: %i[show edit update destroy process paid]
   def index
     @answers = Answer.all
     # Aca quizas usemos gema cancancan
@@ -15,6 +16,7 @@ class AnswersController < ApplicationController
     @answer.question = @question
     @answer.user = current_user
     @question.new_answer if @question.waiting?
+    @question.save
     # @answer.status = "pending"
     if @answer.save
       redirect_to question_path(@question)
@@ -34,17 +36,45 @@ class AnswersController < ApplicationController
   #   end
   # end
   def paid
-    @answer.paid
-    @questions.choosed
+  # SDK de Mercado Pago
+  require 'mercadopago'
+  # Agrega credenciales
+  sdk = Mercadopago::SDK.new(ENV['MERCADOPAGO_TOKEN'])
+
+  # Crea un objeto de preferencia
+  preference_data = {
+    items: [
+      {
+        title: "Test de producto",
+        unit_price: 75,
+        quantity: 1
+      }
+    ]
+  }
+  preference_response = sdk.preference.create(preference_data) # Esto es un post
+  preference = preference_response[:response] # Esta es la respuesta de mercado pago es un json
+  # respuesta = JSON.parse(preference.to_json)
+  # @preference_id = respuesta['id']
+
+  # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
+  @preference_id = preference['id']
+
+  # if repsuesta es approve
+  #   @answer.pay
+  #   @questions.choosed
+  #   @answer.save
+  #   @question.save
   end
 
   def choosed
     @answer.accept
+    @answer.save
     # rechazar el resto de Answers que habia para esa pregunta
   end
 
   def rejected
     @answer.reject
+    @answer.save
   end
 
   def edit

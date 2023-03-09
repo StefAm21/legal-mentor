@@ -1,2 +1,17 @@
 <h1>Answers#index</h1>
 <p>Find me in app/views/answers/index.html.erb</p>
+<h1>Mis respuestas</h1>
+  <div class="row mt-5">
+    <% current_user.answers.each do |answer| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= answer.question.title %></h5>
+            <p class="card-text"><%= answer.comment %></p>
+            <%= link_to 'View details', question_answer_path(answer.question, answer), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

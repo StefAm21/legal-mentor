@@ -1,0 +1,39 @@
+
+<h1>Preguntas por responder:</h1>
+  <div class="row mt-5">
+    <% @questions.each do |question| %>
+      <div class="col-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= question.title %></h5>
+            <p class="card-text"><%= question.description %></p>
+            <% # aqui hay que ver como expandir la card para que se vea toda la info y poner %>
+            <% # modal al final de esa expansion para poder responder %>
+            <%#= link_to 'View details', question_answer_path(answer.question, answer), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!--
+<div id="accordion">
+  <% @questions.each do |question| %>
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <%= question.title %>
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+        <%= question.description %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+</div>
