@@ -81,7 +81,7 @@ end
 #Project files
 
 gem "cloudinary"
-gem "mercadopago-sdk"
+
 gem "aasm"
 
 gem "mercadopago-sdk"
