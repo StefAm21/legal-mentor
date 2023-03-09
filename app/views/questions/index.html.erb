@@ -42,13 +42,27 @@
   </div>
 
   <%# <div class="row mt-5"> %>
-    <%# <% 6.times do %>
+    <%# <% current_user.questions.each do |question| %>
       <%# <div class="col-md-4 mb-4"> %>
         <%# <div class="card"> %>
           <%# <div class="card-body"> %>
-            <%# <h5 class="card-title">Pregunta</h5> %>
-            <%# <p class="card-text">This is a sample card with some lorem ipsum text.</p> %>
-            <%# <a href="#" class="btn btn-primary">Ver mas</a> %>
+            <%# <h5 class="card-title"><%= question.title</h5> %>
+            <%# <p class="card-text"><%= question.description</p> %>
+          <%# </div> %>
+          <%# <div class="card-footer d-flex justify-content-between align-items-center"> %>
+            <%# <%= link_to 'Ver ofertas', question_path(question), class: 'btn btn-primary mr-2' %>
+            <%# <div class="d-flex align-items-center"> %>
+              <%# <span class="edit-icon mr-2"> %>
+                <%# <%= link_to "#", class: "btn btn-ghost" do %>
+                  <%# <i class="fa fa-pencil fa-sm"></i> %>
+                <%# <% end %>
+              <%# </span> %>
+              <%# <span class="delete-icon"> %>
+                <%# <%= link_to "#", class: "btn btn-ghost" do %>
+                  <%# <i class="fa fa-trash fa-sm"></i> %>
+                <%# <% end %>
+              <%# </span> %>
+            <%# </div> %>
           <%# </div> %>
         <%# </div> %>
       <%# </div> %>
@@ -60,12 +74,27 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= question.title %></h5>
-            <p class="card-text"><%= question.description %></p>
-            <%= link_to 'Ver ofertas', question_path(question), class: 'btn btn-primary' %>
+            <h5 class="card-title"><%= truncate(question.title, length: 70) %></h5>
+            <p class="card-text"><%= truncate(question.description, length: 100) %></p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <%= link_to 'Ver ofertas', question_path(question), class: 'btn btn-primary mr-2' %>
+            <div class="d-flex align-items-center">
+              <span class="edit-icon mr-2">
+                <%= link_to "#", class: "btn btn-ghost" do %>
+                  <i class="fa fa-pencil fa-sm"></i>
+                <% end %>
+              </span>
+              <span class="delete-icon">
+                <%= link_to "#", class: "btn btn-ghost" do %>
+                  <i class="fa fa-trash fa-sm"></i>
+                <% end %>
+              </span>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+
 </div>
