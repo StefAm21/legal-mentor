@@ -5,6 +5,9 @@ class Answer < ApplicationRecord
   # Response in pdf
   has_one_attached :photo
 
+  has_rich_text :response
+
+
   # Validations
   validates :price, :comment, :avg_time, :payment_status, :user, :question, presence: true
 

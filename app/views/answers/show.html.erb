@@ -7,3 +7,21 @@
 </form>
 
 <%#= button_to "Contratar", paid_path(@answer) %>
+
+<div class="container">
+  <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :photo, label: "Adjunta tu respuesta en formato pdf, jpg, png", as: :file %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>
+
+  <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>
+  <%#= cl_video_tag @answer.photo.key, resource_type: :image, format: 'pdf' %>
+  <%#= cl_video_tag @answer.photo.key, resource_type: :auto, format: 'pdf' %>
+  <%#= cl_image_tag("https://res.cloudinary.com/dcfoaujd5/image/fetch/w_800,h_600,c_fill,g_auto,q_auto,f_auto/page_1/#{@answer.photo.key}", alt: "PDF thumbnail") %>
+  <%= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>

@@ -10,10 +10,11 @@ Rails.application.routes.draw do
     resources :answers, only: [:create] do
       resources :reviews, only: %i[new create]
     end
-    resources :answers, only: %i[new create show]
+    resources :answers, only: %i[new create show update]
   end
-  resources :answers, only: %i[index edit update destroy]
+  resources :answers, only: %i[index edit destroy]
 
   post "answers/:id/paid", to: "answers#paid", as: :paid
   get "/general", to: "questions#general", as: :general
+  put "answers/:id/response", to: "answers#after_paid", as: :response
 end

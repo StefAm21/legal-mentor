@@ -4,3 +4,5 @@ import "./controllers"
 import "bootstrap"
 
 //= require stimulus
+import "trix"
+import "@rails/actiontext"

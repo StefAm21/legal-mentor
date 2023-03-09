@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: %i[new create edit update process]
-  before_action :set_answer, only: %i[show edit update destroy process paid]
+  before_action :set_question, only: %i[new create show edit update process after_paid]
+  before_action :set_answer, only: %i[show edit update destroy process paid after_paid]
   def index
     @answers = Answer.all
     # Aca quizas usemos gema cancancan
@@ -24,8 +24,8 @@ class AnswersController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   # def process
   #   if params[:condition] == "choosed"
@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
   #     @answer.reject
   #   end
   # end
-  def paid
+  def show
   require 'mercadopago'
   # SDK de Mercado Pago
   # Agrega credenciales
@@ -44,8 +44,8 @@ class AnswersController < ApplicationController
   preference_data = {
     items: [
       {
-        title: "Test de producto",
-        unit_price: 75,
+        title: @answer.question.title,
+        unit_price: @answer.price,
         quantity: 1
       }
     ]
@@ -82,7 +82,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      redirect_to answer_path(@answer)
+      redirect_to question_answer_path(@question, @answer)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -94,10 +94,18 @@ class AnswersController < ApplicationController
     redirect_to answers_path, status: :see_other
   end
 
+  def after_paid
+    if @answer.update(answer_params)
+      redirect_to answer_path(@answer)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def answer_params
-    params.require(:answer).permit(:price, :payment_status, :comment, :avg_time, :photo)
+    params.require(:answer).permit(:price, :payment_status, :comment, :avg_time, :photo, :response_pdf)
   end
 
   def set_question
