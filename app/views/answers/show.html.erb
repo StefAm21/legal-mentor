@@ -20,11 +20,14 @@
   <% end %>
 </div>
 
-  <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>
+  <%#= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>
   <%#= cl_video_tag @answer.photo.key, resource_type: :image, format: 'pdf' %>
-  <%#= cl_video_tag @answer.photo.key, resource_type: :auto, format: 'pdf' %>
+  <%#= cl_image_tag "#{@answer.photo.key}.jpg", pages: "1-3" %>
+  <h3> Previsualización:</h3>
+  <%= cl_image_tag "#{@answer.photo.key}.png", :width=>700, :height=>700 %>
+
   <%#= cl_image_tag("https://res.cloudinary.com/dcfoaujd5/image/fetch/w_800,h_600,c_fill,g_auto,q_auto,f_auto/page_1/#{@answer.photo.key}", alt: "PDF thumbnail") %>
-  <%= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>
+  <%#= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>
 <%# ANSWER VIEW %>
 <div class="container">
   <div class="row">
