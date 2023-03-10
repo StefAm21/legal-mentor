@@ -1,3 +1,20 @@
+<!--
+Instrucciones sobre botones PARA USER con condiciones:
+1:
+  2 botones uno para volver y otro para contratar.
+  Condicion: Solo puede aparecer si se cumple question.choosing && answer.sent
+2:
+  -Se oculta el boton volver y contratar
+  -Se muestra boton Pagar.
+  Condicion: Si se cumple question.choosing && answer.accepted
+3:
+  -Se oculta el pagar, y aparece SOLO PARA LAWYER el submit para adjuntar pdf
+  condicion: question.paid && answer.paid
+4:
+  -Aparecen botones para descargar solucion y para dejar review.
+  condicion: question.answered && answer.ended
+-->
+
 <h1>Answers#show</h1>
 <p>Find me in app/views/answers/show.html.erb</p>
 <%= button_to "Contratar", choosed_path(@answer), method: :get %>
@@ -39,7 +56,7 @@
         <div class="d-flex align-items-center">
           <img src="https://via.placeholder.com/150" class="rounded-circle mr-3" alt="Lawyer Avatar">
           <div>
-            <h5 class="mb-2"><%= @answer.question.title %></h5>
+            <h5 class="mb-2"><%= @answer.user.name %></h5>
             <div class="d-flex align-items-center">
               <p class="mb-2">Rating: </p>
               <i class="fa fa-star text-warning"></i>
