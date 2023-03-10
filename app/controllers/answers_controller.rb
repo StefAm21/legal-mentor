@@ -90,15 +90,11 @@ class AnswersController < ApplicationController
   end
 
   def after_paid #Cuando tengo que agregar el archivo adjunto
-    if @answer.update(answer_params)
-      @question.answer_delivered
-      @question.save
-      @answer.finalize
-      @answer.save
-      redirect_to answer_path(@answer)
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @question.answer_delivered
+    @question.save
+    @answer.finalize
+    @answer.save
+    redirect_to answer_path(@answer)
   end
 
   private

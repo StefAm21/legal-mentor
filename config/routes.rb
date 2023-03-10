@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post "answers/:id/paid", to: "answers#paid", as: :paid
   get "/general", to: "questions#general", as: :general
-  put "answers/:id/response", to: "answers#after_paid", as: :response
+  get "answers/:id/response", to: "answers#after_paid", as: :response
   get "answers/:id/choosed", to: "answers#choosed", as: :choosed
   resources :users, only: :show
 end
