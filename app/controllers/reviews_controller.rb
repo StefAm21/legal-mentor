@@ -7,12 +7,19 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params_review)
-    @user_lawyer = @answer[:user_id]
-    @review.user = User.find(@user_lawyer)
+    # @user_lawyer = @answer[:user_id]
+    # @review.user = User.find(@user_lawyer)
+    # if @review.save
+    #   redirect_to questions_path
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
     if @review.save
-      redirect_to questions_path
+      flash[:success] = "Review successfully submitted"
+      redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      flash[:error] = "There was an error submitting your review"
+      render :new
     end
   end
 

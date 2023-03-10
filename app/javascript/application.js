@@ -4,5 +4,10 @@ import "./controllers"
 import "bootstrap"
 
 //= require stimulus
+//= require jquery3
+//= require popper
+//= require bootstrap
+//= require_tree .
+
 import "trix"
 import "@rails/actiontext"

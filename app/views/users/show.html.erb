@@ -8,12 +8,17 @@
         <h3>User Name</h3>
       </div>
       <div class="mt-4 text-center">
-        <i class="fas fa-star"></i>
+        <%# <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star-half-alt"></i>
-        <span>4.5</span>
+        <span>4.5</span> %>
+        <% if Review.any? %>
+          <%= star_rating(Review.average(:rating).round(1)) %>
+        <% else %>
+        <%= star_rating(0) %>
+        <% end %>
       </div>
       <div class="mt-4">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at libero enim. </p>
@@ -34,9 +39,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
