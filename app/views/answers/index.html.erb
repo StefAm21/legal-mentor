@@ -6,8 +6,8 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= answer.question.title %></h5>
-            <p class="card-text"><%= answer.comment %></p>
+            <h5 class="card-title"><%= truncate(answer.question.title, length: 50) %></h5>
+            <p class="card-text"><%= truncate(answer.comment, length: 70) %></p>
             <%= link_to 'View details', question_answer_path(answer.question, answer), class: 'btn btn-primary' %>
           </div>
         </div>

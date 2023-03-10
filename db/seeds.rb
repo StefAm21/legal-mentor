@@ -85,7 +85,8 @@ lawyer = User.create!(
   email: 'lawyer@example.com',
   password: 'password',
   name: "lawyer name",
-  last_name: 'lawyer last name '
+  last_name: 'lawyer last name ',
+  lawyer: true
 )
 
 puts "creating answers for common_user"
@@ -117,7 +118,8 @@ another_lawyer = User.create!(
   email: 'another_lawyer@example.com',
   password: 'password',
   name: "other_lawyer name",
-  last_name: 'other_lawyer last name '
+  last_name: 'other_lawyer last name ',
+  lawyer: true
 )
 
 puts "creating answers for common_user by another_lawyer"
