@@ -29,6 +29,9 @@
             <div class="mb-3 string required question_title"><label class="form-label string required" for="question_title">Pregunta <abbr title="required">*</abbr></label><input class="form-control string required" required="required" aria-required="true" type="text" name="question[title]" id="question_title"></div>
             <div class="mb-3 text required question_description"><label class="form-label text required" for="question_description">Descripción <abbr title="required">*</abbr></label><textarea class="form-control text required" required="required" aria-required="true" name="question[description]" id="question_description"></textarea></div>
               <select class="form-control" required="required" name="question[category]" id="question_category"><option value="">Selecciona una categoría</option>
+                <% Category.pluck(:name).each do |name| %>
+                  <option value="<%= name %>"><%= name %></option>
+                <% end %>
               </select>
               <%# <input type="submit" name="commit" value="Publicar pregunta" class="btn btn btn-flat" data-disable-with="Create Question"> %>
               <div class="modal-footer">

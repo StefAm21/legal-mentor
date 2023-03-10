@@ -10,7 +10,9 @@ puts "creando usuario comun"
 # Create common USER
 common_user = User.create!(
   email: 'user@example.com',
-  password: 'password'
+  password: 'password',
+  name: "user name",
+  last_name: 'user last name '
 )
 
 puts "creando questions"
@@ -47,7 +49,9 @@ puts "creating new user"
 # Create a new USER
 new_user = User.create!(
   email: 'new_user@example.com',
-  password: 'password'
+  password: 'password',
+  name: "new_user name",
+  last_name: 'new_user last name '
 )
 
 puts "creating questions for new_user"
@@ -79,7 +83,9 @@ puts "creating new lawyer"
 # Create a new LAWYER
 lawyer = User.create!(
   email: 'lawyer@example.com',
-  password: 'password'
+  password: 'password',
+  name: "lawyer name",
+  last_name: 'lawyer last name '
 )
 
 puts "creating answers for common_user"
@@ -109,7 +115,9 @@ puts "creating another lawyer"
 # Create another LAWYER
 another_lawyer = User.create!(
   email: 'another_lawyer@example.com',
-  password: 'password'
+  password: 'password',
+  name: "other_lawyer name",
+  last_name: 'other_lawyer last name '
 )
 
 puts "creating answers for common_user by another_lawyer"
@@ -136,3 +144,16 @@ new_user.questions.each do |question|
   )
 end
 
+puts "Creating categories..."
+Category.create!(
+  name: 'Impuestos'
+)
+Category.create!(
+  name: 'Leyes'
+)
+Category.create!(
+  name: 'Empresas'
+)
+Category.create!(
+  name: 'Personas'
+)
