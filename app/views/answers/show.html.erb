@@ -30,16 +30,16 @@
   <%#= cl_image_tag("https://res.cloudinary.com/dcfoaujd5/image/fetch/w_800,h_600,c_fill,g_auto,q_auto,f_auto/page_1/#{@answer.photo.key}", alt: "PDF thumbnail") %>
   <%#= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>
 <%# ANSWER VIEW %>
-<!--
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="text-left">Question Title</h1>
+      <%= <h1 class="text-left">@question.title</h1> %>
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
           <img src="https://via.placeholder.com/150" class="rounded-circle mr-3" alt="Lawyer Avatar">
           <div>
-            <h5 class="mb-2">Lawyer Full Name</h5>
+            <%= <h5 class="mb-2">@answer.name</h5> %>
             <div class="d-flex align-items-center">
               <p class="mb-2">Rating: </p>
               <i class="fa fa-star text-warning"></i>
