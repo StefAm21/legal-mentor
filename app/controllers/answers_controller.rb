@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: %i[new create show edit update process after_paid check_payment choosed]
+  before_action :set_question, only: %i[new create show edit update process after_paid check_payment]
   before_action :set_answer, only: %i[show edit update destroy process paid after_paid check_payment choosed]
   def index
     @answers = Answer.all
@@ -61,8 +61,8 @@ class AnswersController < ApplicationController
 
   def choosed #Cuando apreto el Contratar
     @answer.accept
-    @answer.save
-    redirect_to question_answer_path(@question, @answer)
+    #@answer.save
+    redirect_to question_answer_path(@answer.question, @answer)
     # rechazar el resto de Answers que habia para esa pregunta TODO
   end
 
