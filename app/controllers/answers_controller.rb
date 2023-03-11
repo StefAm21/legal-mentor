@@ -45,10 +45,18 @@ class AnswersController < ApplicationController
     # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
     @preference_id = preference['id']
     @preference_status = preference['status']
+    # puts "VALORES DE LA API"
+    # puts "ID: #{@preference_id} STATUS: #{@preference_status}"
     #Checkpayment
   end
 
   def check_payment #Para ver si el pago fue exitoso
+    puts "LLEGAMOS----------------------------------"
+    payment_response = JSON.parse(request.body.read)
+    # Process the payment response as needed
+    # ...
+    puts "LLEGAMOS----------------------------------"
+    render plain: 'OK'
     if @preference_status == "approved"
       @answer.pay
       @questions.choosed
@@ -61,7 +69,7 @@ class AnswersController < ApplicationController
 
   def choosed #Cuando apreto el Contratar
     @answer.accept
-    #@answer.save
+    @answer.save
     redirect_to question_answer_path(@answer.question, @answer)
     # rechazar el resto de Answers que habia para esa pregunta TODO
   end

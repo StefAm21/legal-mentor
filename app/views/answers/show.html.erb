@@ -17,37 +17,75 @@ Instrucciones sobre botones PARA USER con condiciones:
 
 <h1>Answers#show</h1>
 <p>Find me in app/views/answers/show.html.erb</p>
-<%= button_to "Contratar", choosed_path(@answer), method: :get %>
-<%= button_to "Volver", question_path(@question), method: :get %>
+<%# 1 %>
+<% if @question.choosing? && @answer.sent? %>
+  <%= button_to "Contratar", choosed_path(@answer), method: :get %>
+  <%= button_to "Volver", question_path(@question), method: :get %>
+<% end %>
 
+<%# 2 %>
+<% if @question.choosing? && @answer.accepted? %>
 <%# Este form es el boton pagar de mercado pago! %>
-<form action="/answers/<%=@answer.id%>/procesar-pago" method="POST">
-    <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
-    </script>
-</form>
+  <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
+  </script>
+  <script>
+  // Listen for the "payment.created" event
+  window.addEventListener("payment.created", function(event) {
+    // Save the payment response to your backend
+    const paymentResponse = event.detail;
+    fetch('/answers/<%= @answer.id %>/procesar-pago', {
+      method: 'POST',
+      body: JSON.stringify(paymentResponse),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      console.log('Payment response saved successfully.');
+    })
+    .catch(error => {
+      console.error('Error saving payment response:', error);
+    });
+  });
+  </script>
+  <!--
+  <form action="/answers/<%=@answer.id%>/procesar-pago" method="POST">
+      <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
+      </script>
+  </form>
+<% end %>
+-->
+<%# 3 %>
+<% if @question.paid? && @answer.paid? && current.user.lawyer? %>
 <%# Este es el form para adjuntar un archivo a la respuesta %>
-<div class="container">
-  <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :photo, label: "Adjunta tu respuesta en formato pdf, jpg, png", as: :file %>
-    </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
-    </div>
-  <% end %>
+  <div class="container">
+    <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :photo, label: "Adjunta tu respuesta en formato pdf, jpg, png", as: :file %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
+      </div>
+    <% end %>
 
-    <%# <h3> Previsualización:</h3> %>
-  <%# Este es el preview %>
-  <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
-  <% if @answer.photo.attach? %>
-    <%= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
-  <% end %>
+      <%# <h3> Previsualización:</h3> %>
+    <%# Este es el preview %>
+    <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
+    <% if @answer.photo.attached? %>
+      <%= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+    <% end %>
 
-  <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
+    <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
 
 
-</div>
+  </div>
+<% end %>
+
+<%# 4 %>
+<% if @question.answered? && @answer.ended? && !current_user.lawyer%>
+  <p>Dejar review y descargar</p>
+<% end %>
 
   <%#= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>
   <%#= cl_video_tag @answer.photo.key, resource_type: :image, format: 'pdf' %>
@@ -57,6 +95,7 @@ Instrucciones sobre botones PARA USER con condiciones:
   <%#= cl_image_tag("https://res.cloudinary.com/dcfoaujd5/image/fetch/w_800,h_600,c_fill,g_auto,q_auto,f_auto/page_1/#{@answer.photo.key}", alt: "PDF thumbnail") %>
   <%#= cl_video_tag("https://res.cloudinary.com/dcfoaujd5/video/upload/fl_attachment/v1/#{@answer.photo.key}.pdf", resource_type: :video, alt: "PDF document") %>
 <%# ANSWER VIEW %>
+<!-- DESCOMENTAR PARA TRABJAR EN FRONT
 
 <div class="container">
   <div class="row">
