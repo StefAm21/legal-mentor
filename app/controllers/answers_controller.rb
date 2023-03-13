@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
     require 'mercadopago'
     # SDK de Mercado Pago
     # Agrega credenciales
-    sdk = Mercadopago::SDK.new('TEST-5635626968426827-030609-8da4baa7bbfe680d16a205b3c2db1afb-325153089')
+    sdk = Mercadopago::SDK.new('APP_USR-5635626968426827-030609-666b8dcea6c44800593156cf9a9aec97-325153089')
 
     # Crea un objeto de preferencia
     preference_data = {
@@ -41,7 +41,8 @@ class AnswersController < ApplicationController
     }
     preference_response = sdk.preference.create(preference_data) # Esto es un post
     preference = preference_response[:response] # Esta es la respuesta de mercado pago es un json
-
+    @resultado = JSON.parse(preference.to_json)
+    p @resultado
     # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
     @preference_id = preference['id']
     @preference_status = preference['status']

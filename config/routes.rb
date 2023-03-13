@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "answers/:id/response", to: "answers#after_paid", as: :response
   get "answers/:id/choosed", to: "answers#choosed", as: :choosed
   post "answers/:id/procesar-pago", to: "answers#check_payment", as: :check_payment
+  #get "pago", to: "answers#pago", as: :pago
 
   resources :users, only: :show
 end
