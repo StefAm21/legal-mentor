@@ -18,13 +18,13 @@ Instrucciones sobre botones PARA USER con condiciones:
 <h1>Answers#show</h1>
 <p>Find me in app/views/answers/show.html.erb</p>
 <%# 1 %>
-<% if @question.choosing? && @answer.sent? %>
+<% if @question.choosing? && @answer.sent? && current_user == @question.user%>
   <%= button_to "Contratar", choosed_path(@answer), method: :get %>
   <%= button_to "Volver", question_path(@question), method: :get %>
 <% end %>
 
 <%# 2 %>
-<% if @question.choosing? && @answer.accepted? %>
+<% if @question.choosing? && @answer.accepted? && current_user == @question.user %>
 <%# Este form es el boton pagar de mercado pago! %>
 <!--
   <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
@@ -57,7 +57,7 @@ Instrucciones sobre botones PARA USER con condiciones:
 <% end %>
 
 <%# 3 %>
-<% if @question.paid? && @answer.paid? && current.user.lawyer? %>
+<% if @question.paid? && @answer.paid? && current_user == answer.user %>
 <%# Este es el form para adjuntar un archivo a la respuesta %>
   <div class="container">
     <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
@@ -84,7 +84,7 @@ Instrucciones sobre botones PARA USER con condiciones:
 <% end %>
 
 <%# 4 %>
-<% if @question.answered? && @answer.ended? && !current_user.lawyer%>
+<% if @question.answered? && @answer.ended? && current_user == question.user%>
   <p>Dejar review y descargar</p>
 <% end %>
 
