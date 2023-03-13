@@ -8,9 +8,13 @@ class Ability
 
     return unless user.present?
 
-    can :read, Article, user: user
-    can :update, Article, user: user
-    
+    if user.lawyer?
+      can :manage, :all
+    else
+      can :manage, Question, use: user
+      #can [:read, :update], Answer, user: user
+    end
+
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?
