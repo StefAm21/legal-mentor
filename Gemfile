@@ -85,3 +85,5 @@ gem "cloudinary"
 gem "aasm"
 
 gem "mercadopago-sdk"
+
+gem "cancancan"
