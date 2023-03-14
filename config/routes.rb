@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, only: [:create] do
       resources :reviews, only: %i[new create]
+      resources :payments, only: %i[new create]
     end
     resources :answers, only: %i[new create show update]
   end
   resources :answers, only: %i[index edit destroy]
+
+  resources :payments, except: [:new, :create]
+
 
   post "answers/:id/paid", to: "answers#paid", as: :paid
   get "/preguntas", to: "questions#general", as: :preguntas
@@ -21,6 +25,8 @@ Rails.application.routes.draw do
   get "answers/:id/choosed", to: "answers#choosed", as: :choosed
   post "answers/:id/procesar-pago", to: "answers#check_payment", as: :check_payment
   #get "pago", to: "answers#pago", as: :pago
+  post "process_payment", to: "payments#process_payment"
+
 
   resources :users, only: :show
 end

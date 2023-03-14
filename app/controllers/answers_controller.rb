@@ -17,7 +17,7 @@ class AnswersController < ApplicationController
     @question.new_answer if @question.waiting?
     @question.save
     if @answer.save
-      redirect_to general_path()
+      redirect_to preguntas_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -69,9 +69,13 @@ class AnswersController < ApplicationController
 
 
   def choosed #Cuando apreto el Contratar
-    @answer.accept
-    @answer.save
-    redirect_to question_answer_path(@answer.question, @answer)
+    # @answer.accept
+    # @answer.save
+    # redirect_to question_answer_path(@answer.question, @answer)
+    # raise
+    redirect_to new_question_answer_payment_path(@answer.question.id, @answer)
+
+    # <%= link_to "pagar", new_question_answer_payment_path(params[:question_id], @answer) %>
     # rechazar el resto de Answers que habia para esa pregunta TODO
   end
 

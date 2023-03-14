@@ -23,10 +23,10 @@ Instrucciones sobre botones PARA USER con condiciones:
   <%= button_to "Volver", question_path(@question), method: :get %>
 <% end %>
 
+<!--
 <%# 2 %>
 <% if @question.choosing? && @answer.accepted? && current_user == @question.user %>
 <%# Este form es el boton pagar de mercado pago! %>
-<!--
   <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
   </script>
   <script>
@@ -50,11 +50,15 @@ Instrucciones sobre botones PARA USER con condiciones:
   });
   </script>
   -->
+<!--
+
   <form action="/answers/<%=@answer.id%>/procesar-pago" method="POST">
       <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
       </script>
   </form>
 <% end %>
+  -->
+
 
 <%# 3 %>
 <% if @question.paid? && @answer.paid? && current_user == answer.user %>
