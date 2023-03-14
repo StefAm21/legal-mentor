@@ -18,30 +18,30 @@ common_user = User.create!(
 puts "creando questions"
 # Create questions for common_user
 Question.create!(
-  title: 'How can I organize my taxes?',
-  description: 'I am building my start up................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
+  title: 'Tips for Organizing Taxes for Your Startup?',
+  description: "As a startup owner, tax organization is crucial to ensure compliance and avoid penalties. What are some practical tips to help me organize my startup taxes effectively?",
   category: "Tax",
   user: common_user
 )
 
 Question.create!(
-  title: 'How can I organize my taxes?',
-  description: 'I am building my start up................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
-  category: "Tax",
+  title: 'What are the steps to register a trademark?',
+  description: 'I want to protect my business name and logo. What are the legal requirements and steps I need to take to register a trademark?',
+  category: "Legal",
   user: common_user
 )
 
 Question.create!(
-  title: 'How can I organize my taxes?',
-  description: 'I am building my start up................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
-  category: "Tax",
+  title: 'How do I create a legally binding contract?',
+  description: 'I need to draft a contract for my business. What are the essential elements of a legally binding contract, and how can I ensure its enforceable?',
+  category: "Contract",
   user: common_user
 )
 
 Question.create!(
-  title: 'How can I organize my taxes?',
-  description: 'I am building my start up................... sdbasjfbadshcfbdaskcckhdsabckjdbckjdsbckjsdbcjdkcbsjkdbc',
-  category: "Tax",
+  title: 'What is the process for forming an LLC?',
+  description: "I want to establish a limited liability company (LLC) for my business. What are the legal requirements and steps involved in forming an LLC, and what are the benefits?",
+  category: "LLC",
   user: common_user
 )
 
@@ -76,8 +76,6 @@ Question.create!(
   category: "Software Development",
   user: new_user
 )
-
-
 
 puts "creating new lawyer"
 # Create a new LAWYER
@@ -161,9 +159,9 @@ reviews = [
   { rating: 2, comment: "I regret buying this product, I wish I had chosen something else." }
 ]
 
-reviews.each do |review|
-  lawyer.Review.create!(review)
-end
+# reviews.each do |review|
+#   lawyer.Review.create!(review)
+# end
 puts "Creating categories..."
 Category.create!(
   name: 'Impuestos'
