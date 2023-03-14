@@ -1,23 +1,22 @@
-
-<div class="container-md">
+<div class="container-h1 mt-3">
 <% if current_user.lawyer? %>
-  <h2>Preguntas disponibles:</h2>
-  </div>
-  <div class="container-md">
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    <% @questions.each do |question| %>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-heading<%= question.id %>">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= question.id %>" aria-expanded="false" aria-controls="flush-collapse<%= question.id %>">
-          <%= question.title %>
-        </button>
-      </h2>
-      <div id="flush-collapse<%= question.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= question.id %>" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body"> <%= question.description %>
-        <p></p>
-        <%= button_to "Responder", new_question_answer_path(question), method: :get, class:"custom-btn btn-1" %>
-        <p></p>
-        </div>
+  <h1>Preguntas disponibles:</h1>
+</div>
+<hr>
+<div class="container-md">
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <% @questions.each do |question| %>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-heading<%= question.id %>">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= question.id %>" aria-expanded="false" aria-controls="flush-collapse<%= question.id %>">
+        <%= question.title %>
+      </button>
+    </h2>
+    <div id="flush-collapse<%= question.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= question.id %>" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"> <%= question.description %>
+      <p></p>
+      <%= button_to "Responder", new_question_answer_path(question), method: :get, class:"button-81" %>
+      <p></p>
       </div>
     </div>
     <% end %>

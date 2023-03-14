@@ -15,15 +15,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="mb-3">
+            <%# <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Pregunta:</label>
               <input type="text" class="form-control" id="recipient-name">
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Contexto:</label>
               <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
+            </div> %>
+          <%# </form> %>
           <form class="simple_form new_question" id="new_question" novalidate="novalidate" action="/questions" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xqqv2tmlIS8UdrnikZvjN-zry_0DpGCjSS4OhT9JoZkJwIa-iHW3IwaAbwbYZe8bjY0OyjrRSx0QiK3eS4y2SQ" autocomplete="off">
             <div class="mb-3 string required question_title"><label class="form-label string required" for="question_title">Pregunta <abbr title="required">*</abbr></label><input class="form-control string required" required="required" aria-required="true" type="text" name="question[title]" id="question_title"></div>
             <div class="mb-3 text required question_description"><label class="form-label text required" for="question_description">Descripción <abbr title="required">*</abbr></label><textarea class="form-control text required" required="required" aria-required="true" name="question[description]" id="question_description"></textarea></div>
