@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import DeviseController from "./devise_controller"
+application.register("devise", DeviseController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import ReviewsController from "./reviews_controller"
+application.register("reviews", ReviewsController)

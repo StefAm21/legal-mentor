@@ -36,39 +36,29 @@
 </section>
 
 <section id="ourServices">
-  <div class="container text-center">
-    <div class="row text-start firstTitle"><h3>Our Services</h3></div>
-
-    <div class="row pb-5">
-
-      <div class="col-5">
-        <div class="row">
-
-          <div class="col-6">
-
-            <img src="https://images.pexels.com/photos/7679649/pexels-photo-7679649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="img-fluid">
-          </div>
-          <div class="col-6">
-            <h4>Haz preguntas</h4>
-          </div>
-
-        </div>
+  <article class="pt-5">
+    <section class="card">
+      <div class="text-content">
+        <h3>Haz consultas a abogados calificados</h3>
+        <p> Con un equipo de abogados experimentados y capacitados en diversas áreas del derecho, Legal Mentor ofrece una plataforma segura y fácil de usar para hacer preguntas y recibir respuestas de expertos en derecho.</p>
+        <%= link_to "Publicar una pregunta", new_user_session_path %>
       </div>
-      <div class="col-2"></div>
-      <div class="col-5">
-         <div class="row">
-
-          <div class="col-6">
-            <img src="https://images.pexels.com/photos/5058925/pexels-photo-5058925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="img-fluid">
-          </div>
-
-          <div class="col-6">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat et quod ipsa sint explicabo odio alias eveniet, in ab ex tempora fugiat beatae odit. Voluptate nisi corrupti nostrum natus atque.</p>
-          </div>
-        </div>
+      <div class="visual">
+        <img src="https://images.pexels.com/photos/7658248/pexels-photo-7658248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
       </div>
-    </div>
-  </div>
+    </section>
+
+    <section class="card">
+      <div class="text-content">
+        <h3>Responde preguntas a usuarios</h3>
+        <p>Valida tu cuenta de usuario abogado con tus certificaciones y empieza a responder preguntas.</p>
+        <%= link_to "Responder preguntas", new_user_session_path %>
+      </div>
+      <div class="visual">
+        <img src="https://images.pexels.com/photos/5313158/pexels-photo-5313158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+      </div>
+    </section>
+  </article>
 </section>
 
 <section id="aboutUs" class="p">
