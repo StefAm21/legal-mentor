@@ -14,11 +14,14 @@
   </head>
 
   <body>
+  <% unless controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'passwords' %>
     <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
-
-    <%= yield %>
+  <% end %>
+  <%= yield %>
+    <% unless controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'passwords' %>
     <%= render "shared/footer" %>
+  <% end %>
+  <%= render "shared/flashes" %>
   <script src="https://sdk.mercadopago.com/js/v2"></script>
   </body>
 </html>
