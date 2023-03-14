@@ -23,59 +23,50 @@ class AnswersController < ApplicationController
     end
   end
 
-  def show #cuando apreto el pagar, el boton pagar solo tiene que estar cuando el estado de question es choosing y el de answer es accepted
-    require 'mercadopago'
-    # SDK de Mercado Pago
-    # Agrega credenciales
-    sdk = Mercadopago::SDK.new('APP_USR-5635626968426827-030609-666b8dcea6c44800593156cf9a9aec97-325153089')
+  # def show #cuando apreto el pagar, el boton pagar solo tiene que estar cuando el estado de question es choosing y el de answer es accepted
+  #   require 'mercadopago'
+  #   # SDK de Mercado Pago
+  #   # Agrega credenciales
+  #   sdk = Mercadopago::SDK.new('APP_USR-5635626968426827-030609-666b8dcea6c44800593156cf9a9aec97-325153089')
 
-    # Crea un objeto de preferencia
-    preference_data = {
-      items: [
-        {
-          title: @answer.question.title,
-          unit_price: @answer.price,
-          quantity: 1
-        }
-      ]
-    }
-    preference_response = sdk.preference.create(preference_data) # Esto es un post
-    preference = preference_response[:response] # Esta es la respuesta de mercado pago es un json
-    @resultado = JSON.parse(preference.to_json)
-    p @resultado
-    # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
-    @preference_id = preference['id']
-    @preference_status = preference['status']
-    # puts "VALORES DE LA API"
-    # puts "ID: #{@preference_id} STATUS: #{@preference_status}"
-    #Checkpayment
-  end
+  #   # Crea un objeto de preferencia
+  #   preference_data = {
+  #     items: [
+  #       {
+  #         title: @answer.question.title,
+  #         unit_price: @answer.price,
+  #         quantity: 1
+  #       }
+  #     ]
+  #   }
+  #   preference_response = sdk.preference.create(preference_data) # Esto es un post
+  #   preference = preference_response[:response] # Esta es la respuesta de mercado pago es un json
+  #   @resultado = JSON.parse(preference.to_json)
+  #   p @resultado
+  #   # Este valor reemplazará el string "<%= @preference_id %>" en tu HTML
+  #   @preference_id = preference['id']
+  #   @preference_status = preference['status']
+  #   # puts "VALORES DE LA API"
+  #   # puts "ID: #{@preference_id} STATUS: #{@preference_status}"
+  #   #Checkpayment
+  # end
 
-  def check_payment #Para ver si el pago fue exitoso
-    puts "LLEGAMOS----------------------------------"
-    payment_response = JSON.parse(request.body.read)
-    # Process the payment response as needed
-    # ...
-    puts "LLEGAMOS----------------------------------"
-    render plain: 'OK'
-    if @preference_status == "approved"
-      @answer.pay
-      @questions.choosed
-      @answer.save
-      @question.save
-    end
-    redirect_to question_answer_path(@question, @answer)
-  end
+  # def check_payment #Para ver si el pago fue exitoso
+  #   if @preference_status == "approved"
+  #     @answer.pay
+  #     @questions.choosed
+  #     @answer.save
+  #     @question.save
+  #   end
+  #   redirect_to question_answer_path(@question, @answer)
+  # end
 
 
   def choosed #Cuando apreto el Contratar
-    # @answer.accept
-    # @answer.save
-    # redirect_to question_answer_path(@answer.question, @answer)
+    @answer.accept
+    @answer.save
     # raise
     redirect_to new_question_answer_payment_path(@answer.question.id, @answer)
-
-    # <%= link_to "pagar", new_question_answer_payment_path(params[:question_id], @answer) %>
     # rechazar el resto de Answers que habia para esa pregunta TODO
   end
 

@@ -1,6 +1,5 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-
   require 'mercadopago'
   def index
     @payments = Payment.all
@@ -9,9 +8,14 @@ class PaymentsController < ApplicationController
   def new
     @answer = Answer.find(params[:answer_id])
     @payment = Payment.new
+    session[:answer_id] = params[:answer_id] # Es como un params pero global de la app
+    session[:question_id] = params[:id]
+
   end
 
   def process_payment
+    # @answer = Answer.find(params[:answer_id])
+    # @question = Question.find(params[:question_id])]
     require 'mercadopago'
     sdk = Mercadopago::SDK.new(ENV['MP_TOKEN'])
 
@@ -66,7 +70,16 @@ class PaymentsController < ApplicationController
     @payment.mp_id = resultado["id"].to_i
     @payment.status = resultado["status"]
     @payment.status_detail = resultado["status_detail"]
+    @answer = Answer.find(session[:answer_id])
     if @payment.save
+      if @payment.status == "approved"
+        @question = @answer.question
+        @answer.pay
+        @question.choosed
+        @answer.save
+        @question.save
+        p "PASOOOOOOOOO POR EL IFFFFFFF------------------"
+      end
       redirect_to payment_path(@payment)
     else
       redirect_to root_path, alert: "Algo salio mal"
@@ -77,5 +90,6 @@ class PaymentsController < ApplicationController
   def show
     @payment = Payment.find(params[:id])
   end
+
 
 end
