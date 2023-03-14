@@ -86,4 +86,4 @@ gem "aasm"
 
 gem "mercadopago-sdk"
 
-gem "cancancan"
+#gem "cancancan"
