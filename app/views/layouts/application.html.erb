@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%# <%= favicon_link_tag asset_path('app/assets/images/briefcase.png') %>
     <%= favicon_link_tag asset_path('briefcase.png') %>
-
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
   </head>
 
   <body>
@@ -22,6 +22,5 @@
     <%= render "shared/footer" %>
   <% end %>
   <%= render "shared/flashes" %>
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
   </body>
 </html>

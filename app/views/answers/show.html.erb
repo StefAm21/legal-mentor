@@ -17,16 +17,63 @@ Instrucciones sobre botones PARA USER con condiciones:
 
 <h1>Answers#show</h1>
 <p>Find me in app/views/answers/show.html.erb</p>
+<div class="container-h1 mt-3">
+  <h1><%= @question.title %></h1>
+  <h5 class="subtitle"><%= @question.description %></h5>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-comment">
+        <div class="card-body">
+          <h2>Comentario:</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, dignissimos soluta. Esse dolores rem dolorem rerum hic eveniet fugit earum illum sed unde eos, corporis quas incidunt libero labore ab</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="no-card">
+        <div class="card-body">
+            <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
+            <h4 class="card-title">
+                Lawyer name
+              </h4>
+            <p class="card-text">
+              <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
+            </p>
+            <p class="card-text">
+              <span class="mr-3">Precio: <b>$100</b></span>
+            </p>
+              <span class="mr-3">
+                <% if Review.any? %>
+                  <%= star_rating(Review.average(:rating).round(1)) %>
+                <% else %>
+                  <%= star_rating(0) %>
+                <% end %>
+              </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%# 1 %>
 <% if @question.choosing? && @answer.sent? && current_user == @question.user%>
-  <%= button_to "Contratar", choosed_path(@answer), method: :get %>
-  <%= button_to "Volver", question_path(@question), method: :get %>
+  <div class= "d-flex justify-content-between align-items-center">
+    <%= button_to "Volver", question_path(@question), method: :get %>
+    <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
+  </div>
 <% end %>
 
+<!--
 <%# 2 %>
 <% if @question.choosing? && @answer.accepted? && current_user == @question.user %>
 <%# Este form es el boton pagar de mercado pago! %>
-<!--
   <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
   </script>
   <script>
@@ -50,11 +97,15 @@ Instrucciones sobre botones PARA USER con condiciones:
   });
   </script>
   -->
+<!--
+
   <form action="/answers/<%=@answer.id%>/procesar-pago" method="POST">
       <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js" data-preference-id="<%= @preference_id %>">
       </script>
   </form>
 <% end %>
+  -->
+
 
 <%# 3 %>
 <% if @question.paid? && @answer.paid? && current_user == answer.user %>

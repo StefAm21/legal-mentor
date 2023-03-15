@@ -1,7 +1,8 @@
-
-<div class="container-md">
-<h2>Preguntas disponibles:</h2>
+<div class="container-h1 mt-3">
+<% if current_user.lawyer? %>
+  <h1>Preguntas disponibles:</h1>
 </div>
+<hr>
 <div class="container-md">
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <% @questions.each do |question| %>
@@ -14,14 +15,23 @@
     <div id="flush-collapse<%= question.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= question.id %>" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body"> <%= question.description %>
       <p></p>
-      <%= button_to "Responder", new_question_answer_path(question), method: :get, class:"custom-btn btn-1" %>
+      <%= button_to "Responder", new_question_answer_path(question), method: :get, class:"button-81" %>
       <p></p>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-</div>
+  </div>
+<% else %>
+  <div class="h-100 d-flex align-items-center justify-content-center opacity-75" style="margin-top: 20px;">
+    <br>
+    <h2> Esta sección es solo para abogados verificados </h2>
+  </div>
+
+  <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 10px; ">
+    <%= button_to "Volver", questions_path, method: :get, class:"button-81" %>
+  </div>
+<% end %>
 
 <!--
   <div class="row mt-5">

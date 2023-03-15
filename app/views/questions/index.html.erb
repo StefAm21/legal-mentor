@@ -1,8 +1,11 @@
-<h1>Mis preguntas</h1>
+<div class="container-h1 mt-3">
+  <h1>Mis preguntas</h1>
+</div>
+<hr>
 <%# <p>Find me in app/views/questions/index.html.erb</p> %>
 
-<div class="container">
-  <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button>
+<div class="container mt-3">
+  <button type="button" class="button-79"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -12,15 +15,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="mb-3">
+            <%# <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Pregunta:</label>
               <input type="text" class="form-control" id="recipient-name">
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Contexto:</label>
               <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
+            </div> %>
+          <%# </form> %>
           <form class="simple_form new_question" id="new_question" novalidate="novalidate" action="/questions" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Xqqv2tmlIS8UdrnikZvjN-zry_0DpGCjSS4OhT9JoZkJwIa-iHW3IwaAbwbYZe8bjY0OyjrRSx0QiK3eS4y2SQ" autocomplete="off">
             <div class="mb-3 string required question_title"><label class="form-label string required" for="question_title">Pregunta <abbr title="required">*</abbr></label><input class="form-control string required" required="required" aria-required="true" type="text" name="question[title]" id="question_title"></div>
             <div class="mb-3 text required question_description"><label class="form-label text required" for="question_description">Descripción <abbr title="required">*</abbr></label><textarea class="form-control text required" required="required" aria-required="true" name="question[description]" id="question_description"></textarea></div>
@@ -45,23 +48,28 @@
   <div class="row mt-5">
     <% current_user.questions.each do |question| %>
       <div class="col-md-4 mb-4">
-        <div class="card">
+        <div class="card-display">
           <div class="card-body">
-            <h5 class="card-title"><%= truncate(question.title, length: 70) %></h5>
-            <p class="card-text"><%= truncate(question.description, length: 100) %></p>
+            <h5 class="card-title"><%= truncate(question.title, length: 65) %></h5>
+            <p class="card-text"><%= truncate(question.description, length: 90) %></p>
           </div>
+          <hr>
           <div class="card-footer d-flex justify-content-between align-items-center">
-            <%= link_to 'Ver ofertas', question_path(question), class: 'btn btn-primary mr-2' %>
+            <%# <%= link_to 'Ver ofertas', question_path(question), class: 'custom-btn btn-1 mr-2' %>
+            <%= button_to 'Ver ofertas', question_path(question), method: :get, class:'button-81 mr-2' %>
             <div class="d-flex align-items-center">
               <span class="edit-icon mr-2">
                 <%= link_to "#", class: "btn btn-ghost" do %>
-                  <i class="fa fa-pencil fa-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal"></i>
+                  <i class="fa-regular fa-pen-to-square" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal"></i>
+                  <%# <i class="fa-solid fa-pen"></i> %>
                   <%# <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-controller="modal" data-action="click->modal#openModal">Nueva Pregunta</button> %>
                 <% end %>
               </span>
               <span class="delete-icon">
                 <%= link_to "#", class: "btn btn-ghost" do %>
-                  <i class="fa fa-trash fa-sm"></i> <%# Aca va el destroy action de la question solo si NO fue respondida%>
+                  <i class="fa-regular fa-trash-can"></i> <%# Aca va el destroy action de la question solo si NO fue respondida%>
+                  <%# <i class="fa fa-trash fa-sm"></i> %>
+
                 <% end %>
               </span>
             </div>

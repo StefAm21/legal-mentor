@@ -1,18 +1,14 @@
+<div class="container-h1 mt-3">
+  <h1><%= @question.title %></h1>
+  <h5 class="subtitle"><%= @question.description %></h5>
+</div>
+<hr>
+
 <div class="container">
-  <div class="row mb-4 mt-4">
-    <div class="col">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h2 class="card-title"><%= @question.title %></h2>
-          <p class="card-text"><%= @question.description %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-4">
+  <div class="row mt-3">
     <% @question.answers.each do |answer| %>
     <div class="col-4">
-      <div class="card">
+      <div class="card-display mb-5">
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title">
@@ -30,14 +26,20 @@
           </p>
           <p class="card-text d-flex align-items-center justify-content-between">
             <span class="mr-3">
-              <i class="fas fa-star"></i>
+              <%# <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star-half-alt"></i>
-              <span class="ml-2"> (4.5) </span>
+              <span class="ml-2"> (4.5) </span> %>
+              <% if Review.any? %>
+                <%= star_rating(Review.average(:rating).round(1)) %>
+              <% else %>
+                <%= star_rating(0) %>
+              <% end %>
             </span>
-            <%= link_to 'Ver mas', question_answer_path(@question, answer) , class: 'btn btn-primary' %>
+            <%# <%= link_to 'Ver mas', question_answer_path(@question, answer) , class: 'btn btn-primary' %>
+            <%= button_to "Ver detalles", question_answer_path(answer.question, answer), method: :get, class: "button-81" %>
           </p>
         </div>
       </div>

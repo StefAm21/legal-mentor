@@ -4,6 +4,7 @@ class Answer < ApplicationRecord
 
   # Response in pdf
   has_one_attached :photo
+  has_one :payment
 
 
   # Validations
