@@ -2,7 +2,7 @@
 <div class="container" id="container">
   <div class="form-container sign-in-container">
     <div class="formClass">
-      <h2>Sign in</h2>
+      <h2>Inicia Sesión</h2>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-inputs">
           <%= f.input :email,
@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Log in", class:"buttonClass" %>
+          <%= f.button :submit, "Entrar", class:"buttonClass" %>
         </div>
       <% end %>
     </div>
@@ -24,9 +24,9 @@
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-right">
-        <h1>Hello, Friend!</h1>
-        <p>Enter your personal details and start journey with us</p>
-        <%= link_to "SIGN UP", new_user_registration_path, class:"ghost buttonClass" %>
+        <h1>Bienvenido!</h1>
+        <p>Ingresa tus credenciales y resuelve tus dudas con nosotros 🚀</p>
+        <%= link_to "Registrate!", new_user_registration_path, class:"ghost buttonClass" %>
       </div>
     </div>
   </div>
