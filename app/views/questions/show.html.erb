@@ -11,33 +11,33 @@
       <div class="card-display mb-5">
         <div class="card-body">
           <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title">
+            <h4 class="card-title">
               <%= answer.user.name %>
-            </h5>
+            </h4>
             <div class="d-flex align-items-center">
-              <img src="https://via.placeholder.com/25" alt="avatar" class="rounded-circle mr-2">
+              <img src="https://via.placeholder.com/40" alt="avatar" class="rounded-circle mr-2">
               <%# <span>User Name</span> %>
             </div>
           </div>
-          <p class="card-text"><%= answer.comment %></p>
+          <p class="card-text mt-3"><%= answer.comment %></p>
+          <div class="row">
+            <div class="col-6">
+              <p>Tiempo estimado de respuesta:
+              <br><b><%= answer.avg_time %> hora/s</b></p>
+            </div>
+            <div class="col-6">
+              <span>Precio Final: <b>$<%= answer.price %></b></span>
+            </div>
+          </div>
           <p class="card-text d-flex align-items-center justify-content-between">
-            <span class="mr-3">Tiempo de respuesta estimado: <br> <b><%= answer.avg_time %> hora/s</b></span>
-            <span class="mr-3">Precio Final: <b>$<%= answer.price %></b></span>
-          </p>
-          <p class="card-text d-flex align-items-center justify-content-between">
-            <span class="mr-3">
-              <%# <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <span class="ml-2"> (4.5) </span> %>
+            <span>
               <% if Review.any? %>
                 <%= star_rating(Review.average(:rating).round(1)) %>
               <% else %>
                 <%= star_rating(0) %>
               <% end %>
             </span>
+            <hr>
             <%# <%= link_to 'Ver mas', question_answer_path(@question, answer) , class: 'btn btn-primary' %>
             <%= button_to "Ver detalles", question_answer_path(answer.question, answer), method: :get, class: "button-81" %>
           </p>
