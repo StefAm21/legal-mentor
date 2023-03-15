@@ -108,7 +108,7 @@ Instrucciones sobre botones PARA USER con condiciones:
 
 
 <%# 3 %>
-<% if @question.paid? && @answer.paid? && current_user == answer.user %>
+<% if @question.paid? && @answer.paid? && current_user == @answer.user %>
 <%# Este es el form para adjuntar un archivo a la respuesta %>
   <div class="container">
     <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
@@ -125,17 +125,18 @@ Instrucciones sobre botones PARA USER con condiciones:
     <%# Este es el preview %>
     <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
     <% if @answer.photo.attached? %>
-      <%= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+      <%#= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+      <h3> Preview: </h3>
+      <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
     <% end %>
 
     <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
-
 
   </div>
 <% end %>
 
 <%# 4 %>
-<% if @question.answered? && @answer.ended? && current_user == question.user%>
+<% if @question.answered? && @answer.ended? && current_user == @question.user%>
   <p>Dejar review y descargar</p>
 <% end %>
 
