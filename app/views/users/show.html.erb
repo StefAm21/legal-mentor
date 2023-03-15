@@ -1,41 +1,103 @@
-<%# USER LAWYER PROFILE %>
+<%= stylesheet_link_tag "profile" %>
+<div class="border-box">
+  <div class="container-fluid d-lg-flex my-5">
+    <div class="profile-info-card pb-3 my-5">
+      <div class="card-info-header p-3">
+        <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "rounded-circle img-thumbnail mb-2" %>
+          <% else %>
+              <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
+          <% end %>
+        <h5><%= @user.name %> <%= @user.last_name %></h5>
+          <% if @user.reviews.any? %>
+            <%= star_rating(@user.reviews.average(:rating).round(1)) %>
+          <% else %>
+            <%= star_rating(0) %>
+          <% end %>
+      </div>
 
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="text-center">
-        <img src="https://via.placeholder.com/150" class="rounded-circle img-thumbnail" alt="User Image">
-        <h3>User Name</h3>
+
+      <div class="info-section p-3">
+        <hr>
+        <h5>Description</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus iste dolor veritatis odio architecto debitis fuga corrupti nam    molestias perspiciatis sint, illum nesciunt excepturi. Doloribus repellendus officiis a. Aliquid, maiores.</p>
       </div>
-      <div class="mt-4 text-center">
-        <%# <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <span>4.5</span> %>
-        <% if Review.any? %>
-          <%= star_rating(Review.average(:rating).round(1)) %>
-        <% else %>
-        <%= star_rating(0) %>
-        <% end %>
-      </div>
-      <div class="mt-4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at libero enim. </p>
-      </div>
-      <div class="mt-4">
-        <h4>Studies</h4>
-        <ul>
-          <li>University: XYZ University</li>
-          <li>Law Degree: Bachelor of Laws</li>
-          <li>Master of Laws: Corporate Law</li>
-          <li>PhD in Law: Intellectual Property Law</li>
-          <li>Recommendations: John Doe, Jane Doe</li>
-        </ul>
-      </div>
-      <div class="mt-4 text-center">
-        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-      </div>
+    </div>
+
+    <div class="profile-info-total pb-3 my-5" id="profile-info">
+      <!-- TAB CONTROLLERS -->
+      <input id="panel-1-ctrl"
+            class="panel-radios" type="radio" name="tab-radios" checked>
+      <input id="panel-2-ctrl"
+            class="panel-radios" type="radio" name="tab-radios">
+
+      <!-- TABS LIST -->
+      <ul id="tabs-list">
+          <!-- MENU TOGGLE -->
+          <label id="open-nav-label" for="nav-ctrl"></label>
+          <li id="li-for-panel-1">
+            <label class="panel-label"
+                  for="panel-1-ctrl"><i class="fa-solid fa-address-card"></i> Profile</label>
+          </li><!--INLINE-BLOCK FIX
+      --><li id="li-for-panel-2">
+            <label class="panel-label"
+                  for="panel-2-ctrl"><i class="fa-solid fa-star"></i> Reviews</label>
+          </li>
+      </ul>
+
+      <article id="panels">
+        <div class="container">
+          <section id="panel-1">
+            <main>
+              <div class="experience-info p-3">
+                <h4>Experience</h4>
+                  <ul>
+                    <li>University: XYZ University</li>
+                    <li>Law Degree: Bachelor of Laws</li>
+                    <li>Master of Laws: Corporate Law</li>
+                    <li>PhD in Law: Intellectual Property Law</li>
+                    <li>Recommendations: John Doe, Jane Doe</li>
+                  </ul>
+              </div>
+
+              <hr>
+
+              <div class="studies p-3">
+                <h4>Studies</h4>
+                <ul>
+                  <li>University: XYZ University</li>
+                  <li>Law Degree: Bachelor of Laws</li>
+                  <li>Master of Laws: Corporate Law</li>
+                  <li>PhD in Law: Intellectual Property Law</li>
+                  <li>Recommendations: John Doe, Jane Doe</li>
+                </ul>
+              </div>
+            </main>
+          </section>
+
+          <section id="panel-2">
+            <main>
+              <div class="row mt-5">
+                <% if @user.reviews.any? %>
+                  <% @user.reviews.each do |review| %>
+                    <div class="col-md-4 mb-4">
+                      <div class="card-display">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= star_rating(review.rating) %></h5>
+                          <p class="card-text pt-3">"<%= review.comment %>"</p>
+                          <hr>
+                        </div>
+                      </div>
+                     </div>
+                  <% end %>
+                <% else %>
+                  <h1>Todavia no tiene reseñas.</h1>
+                <% end %>
+              </div>
+            </main>
+          </section>
+        </div>
+      </article>
     </div>
   </div>
 </div>
