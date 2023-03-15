@@ -52,3 +52,14 @@ body {
 .hidden-navbar-footer {
   display: none;
 }
+
+.profile-info-card {
+  background-color: white;
+  box-shadow: 0 0 16px rgba(0,0,0,0.1);
+  word-break: break-word;
+}
+
+.card-info-header {
+  text-align: center;
+  position: relative;
+}

@@ -1,29 +1,38 @@
-<%# USER LAWYER PROFILE %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4 profile-info-card pb-3 my-5">
+      <div class="card-info-header p-3">
+        <img src="https://via.placeholder.com/150" class="rounded-circle img-thumbnail mb-2" alt="User Image">
+        <h5><%= @user.name %> <%= @user.last_name %></h5>
+          <% if @user.reviews.any? %>
+            <%= star_rating(Review.average(:rating).round(1)) %>
+          <% else %>
+            <%= star_rating(0) %>
+          <% end %>
+      </div>
 
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="text-center">
-        <img src="https://via.placeholder.com/150" class="rounded-circle img-thumbnail" alt="User Image">
-        <h3>User Name</h3>
+
+      <div class="info-section p-3">
+        <hr>
+        <h5>Description</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus iste dolor veritatis odio architecto debitis fuga corrupti nam    molestias perspiciatis sint, illum nesciunt excepturi. Doloribus repellendus officiis a. Aliquid, maiores.</p>
       </div>
-      <div class="mt-4 text-center">
-        <%# <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <span>4.5</span> %>
-        <% if Review.any? %>
-          <%= star_rating(Review.average(:rating).round(1)) %>
-        <% else %>
-        <%= star_rating(0) %>
-        <% end %>
+    </div>
+
+    <div class="col-8 profile-info-card pb-3 my-5" id="profile-info">
+      <div class="experience-info p-3">
+        <h4>Experience</h4>
+          <ul>
+            <li>University: XYZ University</li>
+            <li>Law Degree: Bachelor of Laws</li>
+            <li>Master of Laws: Corporate Law</li>
+            <li>PhD in Law: Intellectual Property Law</li>
+            <li>Recommendations: John Doe, Jane Doe</li>
+          </ul>
       </div>
-      <div class="mt-4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at libero enim. </p>
-      </div>
-      <div class="mt-4">
+
+      <hr>
+      <div class="studies p-3">
         <h4>Studies</h4>
         <ul>
           <li>University: XYZ University</li>
@@ -32,9 +41,6 @@
           <li>PhD in Law: Intellectual Property Law</li>
           <li>Recommendations: John Doe, Jane Doe</li>
         </ul>
-      </div>
-      <div class="mt-4 text-center">
-        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
       </div>
     </div>
   </div>
