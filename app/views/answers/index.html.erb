@@ -6,7 +6,7 @@
 <%# <p>Find me in app/views/answers/index.html.erb</p> %>
 
   <div class="row mt-5">
-    <% current_user.answers.each do |answer| %>
+    <% current_user.answers.reverse.each do |answer| %>
       <div class="col-md-4 mb-4">
         <div class="card-display">
           <div class="card-body">

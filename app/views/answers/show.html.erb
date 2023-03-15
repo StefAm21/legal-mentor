@@ -1,3 +1,106 @@
+<div class="container-h1 mt-4">
+  <h1><%= @question.title %></h1>
+  <h5 class="subtitle"><%= @question.description %></h5>
+</div>
+<hr>
+
+<% if current_user.lawyer? %>
+  <div class="container-h1 mt-3">
+    <%= button_to "Volver", answers_path, method: :get, class:"button-81" %>
+  </div>
+<% else %>
+  <div class="container-h1 mt-3">
+    <%= button_to "Volver", question_path(@question), method: :get, class:"button-81" %>
+  </div>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-comment">
+        <div class="card-body">
+            <div class="container d-flex justify-content-center">
+            <div class="row">
+              <div class="col-12 text-center">
+                <%= link_to user_path(@answer.user), style: "text-decoration:none; color:inherit;" do %>
+                  <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
+                  <h4 class="card-title">
+                      <%= @answer.user.name%> <%= @answer.user.last_name  %>
+                  </h4>
+                <% end %>
+                  <div class="mt-1">
+                    <span>
+                      <% if Review.any? %>
+                        <%= star_rating(Review.average(:rating).round(1)) %>
+                      <% else %>
+                        <%= star_rating(0) %>
+                      <% end %>
+                    </span>
+                  </div>
+                  <p class="card-text mt-4">
+                    <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
+                  </p>
+                  <p class="card-text">
+                    <span class="mr-3">Precio Final: <b>$100</b></span>
+                  </p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h4 class="mt-5">Oferta:</h4>
+          <p><%= @answer.comment %></p>
+          <%# 1 %>
+          <% if @question.choosing? && @answer.sent? && current_user == @question.user%>
+            <div class= "d-flex justify-content-between align-items-center">
+              <%#= button_to "Volver", question_path(@question), method: :get %>
+              <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
+            </div>
+          <% end %>
+          <%# 3 %>
+          <% if @question.paid? && @answer.paid? && current_user == @answer.user %>
+          <%# Este es el form para adjuntar un archivo a la respuesta %>
+            <div class="container">
+              <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
+                <%= f.error_notification %>
+                <div class="form-inputs">
+                  <%= f.input :photo, label: "Adjunta tu respuesta en formato pdf, jpg, png", as: :file %>
+                </div>
+                <div class="form-actions">
+                  <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
+                </div>
+              <% end %>
+
+                <%# <h3> Previsualización:</h3> %>
+              <%# Este es el preview %>
+              <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
+              <% if @answer.photo.attached? %>
+                <%#= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+                <h3> Preview: </h3>
+                <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
+              <% end %>
+
+              <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
+
+            </div>
+          <% end %>
+          <%# 4 %>
+          <% if @question.answered? && @answer.ended? && current_user == @question.user%>
+            <p>Dejar review y descargar</p>
+            <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
+            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg", target: :_blank  %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <!--
 Instrucciones sobre botones PARA USER con condiciones:
 1:
@@ -14,61 +117,6 @@ Instrucciones sobre botones PARA USER con condiciones:
   -Aparecen botones para descargar solucion y para dejar review.
   condicion: question.answered && answer.ended
 -->
-
-<h1>Answers#show</h1>
-<p>Find me in app/views/answers/show.html.erb</p>
-<div class="container-h1 mt-3">
-  <h1><%= @question.title %></h1>
-  <h5 class="subtitle"><%= @question.description %></h5>
-</div>
-<hr>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card-comment">
-        <div class="card-body">
-          <h2>Comentario:</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, dignissimos soluta. Esse dolores rem dolorem rerum hic eveniet fugit earum illum sed unde eos, corporis quas incidunt libero labore ab</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="no-card">
-        <div class="card-body">
-            <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
-            <h4 class="card-title">
-                Lawyer name
-              </h4>
-            <p class="card-text">
-              <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
-            </p>
-            <p class="card-text">
-              <span class="mr-3">Precio: <b>$100</b></span>
-            </p>
-              <span class="mr-3">
-                <% if Review.any? %>
-                  <%= star_rating(Review.average(:rating).round(1)) %>
-                <% else %>
-                  <%= star_rating(0) %>
-                <% end %>
-              </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<%# 1 %>
-<% if @question.choosing? && @answer.sent? && current_user == @question.user%>
-  <div class= "d-flex justify-content-between align-items-center">
-    <%= button_to "Volver", question_path(@question), method: :get %>
-    <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
-  </div>
-<% end %>
 
 <!--
 <%# 2 %>
@@ -104,11 +152,11 @@ Instrucciones sobre botones PARA USER con condiciones:
       </script>
   </form>
 <% end %>
-  -->
+
 
 
 <%# 3 %>
-<% if @question.paid? && @answer.paid? && current_user == answer.user %>
+<% if @question.paid? && @answer.paid? && current_user == @answer.user %>
 <%# Este es el form para adjuntar un archivo a la respuesta %>
   <div class="container">
     <%= simple_form_for([@question, @answer], html: { method: :put }) do |f| %>
@@ -125,18 +173,21 @@ Instrucciones sobre botones PARA USER con condiciones:
     <%# Este es el preview %>
     <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
     <% if @answer.photo.attached? %>
-      <%= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+      <%#= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
+      <h3> Preview: </h3>
+      <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
     <% end %>
 
     <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
-
 
   </div>
 <% end %>
 
 <%# 4 %>
-<% if @question.answered? && @answer.ended? && current_user == question.user%>
+<% if @question.answered? && @answer.ended? && current_user == @question.user%>
   <p>Dejar review y descargar</p>
+  <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
+  <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg"  %>
 <% end %>
 
   <%#= cl_image_tag "#{@answer.photo.key}.jpg", :width=>700, :height=>700, :page=>2, :crop=>"fill" %>

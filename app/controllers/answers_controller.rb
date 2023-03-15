@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_question, only: %i[new create show edit update process after_paid check_payment]
+  before_action :set_question, only: %i[new create show edit update process check_payment]
   before_action :set_answer, only: %i[show edit update destroy process paid after_paid check_payment choosed]
   def index
     @answers = Answer.all
@@ -70,6 +70,15 @@ class AnswersController < ApplicationController
     # rechazar el resto de Answers que habia para esa pregunta TODO
   end
 
+  def after_paid #Cuando tengo que agregar el archivo adjunto
+    @question = @answer.question
+    @question.answer_delivered
+    @question.save
+    @answer.finalize
+    @answer.save
+    redirect_to answer_path(@answer)
+  end
+
   def rejected #Cuando apreto rechazar esa propuesta de respuesta
     @answer.reject
     @answer.save
@@ -93,13 +102,6 @@ class AnswersController < ApplicationController
     redirect_to answers_path, status: :see_other
   end
 
-  def after_paid #Cuando tengo que agregar el archivo adjunto
-    @question.answer_delivered
-    @question.save
-    @answer.finalize
-    @answer.save
-    redirect_to answer_path(@answer)
-  end
 
   private
 
