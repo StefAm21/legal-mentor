@@ -54,12 +54,55 @@ body {
 }
 
 .profile-info-card {
-  background-color: white;
-  box-shadow: 0 0 16px rgba(0,0,0,0.1);
-  word-break: break-word;
+    flex: 0 0 400px;
+    background-color: white;
+    box-shadow: 0 0 16px rgba(0,0,0,0.1);
+    margin-right: 24px;
+    word-break: break-word;
 }
 
 .card-info-header {
   text-align: center;
   position: relative;
+}
+
+@media (min-width: 992px) {
+  .d-lg-flex {
+    display: flex !important;
+  }
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.profile-info-total {
+  position: relative;
+    flex: 1 1 auto;
+    background-color: white;
+    box-shadow: 0 0 16px rgba(0,0,0,0.1);
+    padding: 24px;
+}
+
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.nav-underline {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.active-panel {
+  opacity: 1;
+  border-bottom: 4px solid #469AE0;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .d-md-inline-block {
+    display: inline-block !important;
+  }
 }
