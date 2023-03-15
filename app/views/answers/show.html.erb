@@ -15,9 +15,9 @@ Instrucciones sobre botones PARA USER con condiciones:
   condicion: question.answered && answer.ended
 -->
 
-<h1>Answers#show</h1>
-<p>Find me in app/views/answers/show.html.erb</p>
-<div class="container-h1 mt-3">
+<%# <h1>Answers#show</h1>
+<p>Find me in app/views/answers/show.html.erb</p> %>
+<div class="container-h1 mt-4">
   <h1><%= @question.title %></h1>
   <h5 class="subtitle"><%= @question.description %></h5>
 </div>
@@ -27,40 +27,40 @@ Instrucciones sobre botones PARA USER con condiciones:
     <div class="col-12">
       <div class="card-comment">
         <div class="card-body">
-          <h2>Comentario:</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, dignissimos soluta. Esse dolores rem dolorem rerum hic eveniet fugit earum illum sed unde eos, corporis quas incidunt libero labore ab</p>
+            <div class="container d-flex justify-content-center">
+            <div class="row">
+              <div class="col-12 text-center">
+                  <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
+                  <h4 class="card-title">
+                      Lawyer name
+                  </h4>
+                  <div class="mt-1">
+                    <span>
+                      <% if Review.any? %>
+                        <%= star_rating(Review.average(:rating).round(1)) %>
+                      <% else %>
+                        <%= star_rating(0) %>
+                      <% end %>
+                    </span>
+                  </div>
+                  <p class="card-text">
+                    <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
+                  </p>
+                  <p class="card-text">
+                    <span class="mr-3">Precio: <b>$100</b></span>
+                  </p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h4 class="mt-5">Comentario:</h4>
+          <p><%= @answer.comment %></p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="no-card">
-        <div class="card-body">
-            <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
-            <h4 class="card-title">
-                Lawyer name
-              </h4>
-            <p class="card-text">
-              <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
-            </p>
-            <p class="card-text">
-              <span class="mr-3">Precio: <b>$100</b></span>
-            </p>
-              <span class="mr-3">
-                <% if Review.any? %>
-                  <%= star_rating(Review.average(:rating).round(1)) %>
-                <% else %>
-                  <%= star_rating(0) %>
-                <% end %>
-              </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <%# 1 %>
 <% if @question.choosing? && @answer.sent? && current_user == @question.user%>

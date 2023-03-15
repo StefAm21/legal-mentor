@@ -66,10 +66,9 @@
                 <% end %>
               </span>
               <span class="delete-icon">
-                <%= link_to "#", class: "btn btn-ghost" do %>
+                <%= link_to question_path(question.id), data: {turbo_method: :delete}, class: "btn btn-ghost" do %>
                   <i class="fa-regular fa-trash-can"></i> <%# Aca va el destroy action de la question solo si NO fue respondida%>
                   <%# <i class="fa fa-trash fa-sm"></i> %>
-
                 <% end %>
               </span>
             </div>
