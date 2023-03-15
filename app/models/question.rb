@@ -4,6 +4,13 @@ class Question < ApplicationRecord
 
   scope :find_all_questions, -> { order("created_at DESC") }
 
+  include PgSearch::Model
+  pg_search_scope :search_by_category,
+    against: [ :category ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   # Validates
   validates :title, :description, :category, :status, :user, presence: true
 

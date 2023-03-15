@@ -3,6 +3,19 @@
   <h1>Preguntas disponibles:</h1>
 </div>
 <hr>
+<div class="container-h1 mt-3">
+  <div class="btn-group">
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filtrar Categoria
+    </button>
+    <ul class="dropdown-menu">
+      <li class="list-unstyled"><%= link_to "Impuestos", "/preguntas?query=Impuestos", class:"text-decoration-none", style: "color: black" %></li>
+      <li class="list-unstyled"><%= link_to "Leyes", "/preguntas?query=Leyes", class:"text-decoration-none", style: "color: black" %></li>
+      <li class="list-unstyled"><%= link_to "Empresas", "/preguntas?query=Empresas", class:"text-decoration-none", style: "color: black" %></li>
+      <li class="list-unstyled"><%= link_to "Personas", "/preguntas?query=Personas", class:"text-decoration-none", style: "color: black" %></li>
+    </ul>
+  </div>
+</div>
 <div class="container-md">
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <% @questions.each do |question| %>
