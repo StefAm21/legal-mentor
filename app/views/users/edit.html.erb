@@ -2,7 +2,7 @@
 <div class="border-box">
   <div class="container-fluid d-lg-flex my-5">
     <div class="profile-info-card pb-3 my-5">
-      <a href="/users/<%= @user.id %>/edit" class="m-3"><i class="fa-solid fa-pen-to-square mt-3"></i></a>
+      <a href="/users/<%= @user.id %>" class="ms-3"><i class="fa-regular fa-circle-left mt-3"></i></a>
       <div class="card-info-header p-3">
         <% if current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key, class: "rounded-circle img-thumbnail mb-2" %>
@@ -31,6 +31,8 @@
             class="panel-radios" type="radio" name="tab-radios" checked>
       <input id="panel-2-ctrl"
             class="panel-radios" type="radio" name="tab-radios">
+      <input id="panel-3-ctrl"
+            class="panel-radios" type="radio" name="tab-radios">
 
       <!-- TABS LIST -->
       <ul id="tabs-list">
@@ -38,11 +40,15 @@
           <label id="open-nav-label" for="nav-ctrl"></label>
           <li id="li-for-panel-1">
             <label class="panel-label"
-                  for="panel-1-ctrl"><i class="fa-solid fa-address-card"></i> Profile</label>
+                  for="panel-1-ctrl"><i class="fa-solid fa-address-card"></i> Perfil</label>
           </li><!--INLINE-BLOCK FIX
       --><li id="li-for-panel-2">
             <label class="panel-label"
-                  for="panel-2-ctrl"><i class="fa-solid fa-star"></i> Reviews</label>
+                  for="panel-2-ctrl"><i class="fa-solid fa-gavel"></i> Experiencia</label>
+          </li>
+          <li id="li-for-panel-3">
+            <label class="panel-label"
+            for="panel-3-ctrl"><i class="fa-solid fa-building-columns"></i> Estudios</label>
           </li>
       </ul>
 
@@ -50,8 +56,19 @@
         <div class="container">
           <section id="panel-1">
             <main>
-              <div class="experience-info p-3">
-                <h4>Experiencia</h4>
+              <%= simple_form_for @user do |f| %>
+                <%= f.input :name, label: "Nombre" %>
+                <%= f.input :last_name, label: "Apellido" %>
+                <%= f.input :description, label: "Descripcion" %>
+                <%= f.button :submit, class: "buttonClass", value:"Guardar Cambios" %>
+              <% end %>
+            </main>
+          </section>
+
+          <section id="panel-2">
+            <main>
+              <div class="experiences">
+              <h3>Experiencia</h3>
                 <ul>
                   <% @user.experiences.each do |experience| %>
                     <li class="mb-3">
@@ -61,12 +78,22 @@
                     </li>
                   <% end %>
                 </ul>
+              <h3>Agregar nueva experiencia: </h3>
+                <%= simple_form_for [@user, @experiences] do |f| %>
+                <%= f.input :company_name, label: "Nombre de la empresa" %>
+                <%= f.input :job_title, label: "Puesto" %>
+                <%= f.input :start_date, as: :date, label: "Fecha de inicio" %>
+                <%= f.input :end_date, as: :date, label: "Fecha de finalizacion" %>
+                <%= f.button :submit, class: "buttonClass", value:"Agregar experiencia" %>
+              <% end %>
               </div>
+            </main>
+          </section>
 
-              <hr>
-
-              <div class="studies p-3">
-                <h4>Estudios</h4>
+          <section id="panel-3">
+            <main>
+              <div class="estudies">
+              <h3>Estudios</h3>
                 <ul>
                   <% @user.studies.each do |study| %>
                     <li class="mb-3">
@@ -76,33 +103,20 @@
                     </li>
                   <% end %>
                 </ul>
-              </div>
-            </main>
-          </section>
-
-          <section id="panel-2">
-            <main>
-              <div class="row mt-5">
-                <% if @user.reviews.any? %>
-                  <% @user.reviews.each do |review| %>
-                    <div class="col-md-4 mb-4">
-                      <div class="card-display">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= star_rating(review.rating) %></h5>
-                          <p class="card-text pt-3">"<%= review.comment %>"</p>
-                          <hr>
-                        </div>
-                      </div>
-                     </div>
-                  <% end %>
-                <% else %>
-                  <h1>Todavia no tiene reseñas.</h1>
+                 <h3>Agregar nuevo estudio: </h3>
+                <%= simple_form_for [@user, @studies] do |f| %>
+                  <%= f.input :title, label: "Carrera" %>
+                  <%= f.input :university, label: "Universidad" %>
+                  <%= f.input :start_date, as: :date, label: "Fecha de inicio" %>
+                  <%= f.input :end_date, as: :date, label: "Fecha de finalizacion" %>
+                  <%= f.button :submit, class: "buttonClass", value:"Agregar estudio" %>
                 <% end %>
               </div>
             </main>
           </section>
         </div>
       </article>
+    </div>
     </div>
   </div>
 </div>

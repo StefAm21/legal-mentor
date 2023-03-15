@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'user/show'
+  get 'studies/create'
+  get 'studies/update'
+  get 'studies/edit'
+  get 'studies/destroy'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -27,6 +30,8 @@ Rails.application.routes.draw do
   #get "pago", to: "answers#pago", as: :pago
   post "process_payment", to: "payments#process_payment"
 
-
-  resources :users, only: :show
+  resources :users, only: %i[show edit update] do
+    resources :studies, only: %i[create update destroy]
+    resources :experiences, only: %i[create update destroy]
+  end
 end
