@@ -86,4 +86,6 @@ gem "aasm"
 
 gem "mercadopago-sdk"
 
+gem "pg_search"
+
 #gem "cancancan"

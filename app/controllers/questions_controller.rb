@@ -7,7 +7,11 @@ class QuestionsController < ApplicationController
   end
 
   def general
-    @questions = Question.find_all_questions
+    if params[:query].present?
+      @questions = Question.search_by_category(params[:query])
+    else
+      @questions = Question.find_all_questions
+    end
   end
 
   def new
@@ -27,7 +31,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit
