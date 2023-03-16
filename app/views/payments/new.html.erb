@@ -5,7 +5,7 @@
 <script>
 
     const mp = new MercadoPago("<%= ENV['MP_PK'] %>", {
-        locale: 'es-AR'
+        locale: 'en-US'
     });
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
