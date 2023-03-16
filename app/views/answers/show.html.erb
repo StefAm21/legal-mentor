@@ -54,7 +54,7 @@
           <% if @question.choosing? && @answer.sent? && current_user == @question.user%>
             <div class= "d-flex justify-content-between align-items-center">
               <%#= button_to "Volver", question_path(@question), method: :get %>
-              <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"btn btn-success" %>
+              <%= button_to "Contratar", choosed_path(@answer), method: :get, class:"success-btn" %>
             </div>
           <% end %>
           <%# 3 %>
@@ -67,7 +67,7 @@
                   <%= f.input :photo, label: "Adjunta tu respuesta en formato pdf, jpg, png", as: :file %>
                 </div>
                 <div class="form-actions">
-                  <%= f.button :submit, "Agregar", class: "btn btn-primary btn-lg" %>
+                  <%= f.button :submit, "Agregar", class: "enviar-btn" %>
                 </div>
               <% end %>
 
@@ -80,7 +80,7 @@
                 <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
               <% end %>
 
-              <%= button_to "Enviar respuesta", response_path(@answer), method: :get %>
+              <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81" %>
 
             </div>
           <% end %>
