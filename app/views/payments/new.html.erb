@@ -5,7 +5,7 @@
 <script>
 
     const mp = new MercadoPago("<%= ENV['MP_PK'] %>", {
-        locale: 'en-US'
+        locale: 'es-AR'
     });
     const bricksBuilder = mp.bricks();
     const renderCardPaymentBrick = async (bricksBuilder) => {
@@ -13,7 +13,7 @@
             initialization: {
                 amount: <%=@answer.price %>, // monto a ser pago
                 payer: {
-                    email: "karolcampusanoc@gmail.com",
+                    email: "daniel@loken.com",
                 },
             },
             customization: {
