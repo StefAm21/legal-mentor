@@ -30,11 +30,36 @@
                   </h4>
                 <% end %>
                   <div class="mt-1">
+                    <%# <span> %>
+                      <%# <% if Review.any? %>
+                        <%# <%= star_rating(Review.average(:rating).round(1)) %>
+                      <%# <% else %>
+                        <%# <%= star_rating(0) %>
+                      <%# <% end %>
+                    <%# </span> %>
                     <span>
                       <% if Review.any? %>
-                        <%= star_rating(Review.average(:rating).round(1)) %>
+                        <% count = @answer.user.reviews.count %>
+                        <% sum = @answer.user.reviews.sum(:rating) %>
+                        <% rating = (sum/count.to_f).round(2) %>
+                        <% black_star = (sum/count).to_i %>
+                        <% rating.kind_of?(Float) ? half_star = 1 : half_star = 0 %>
+                        <% white_star = 5 - black_star - half_star %>
+                        <% black_star.times do %>
+                          <i class="fas fa-star"></i>
+                        <% end %>
+                        <% half_star.times do %>
+                          <i class="fas fa-star-half-alt"></i>
+                        <% end %>
+                        <% white_star.times do %>
+                          <i class="far fa-star"></i>
+                        <% end %>
+                        <%= "(#{rating.round(1)})" %>
                       <% else %>
-                        <%= star_rating(0) %>
+                        <% 5.times do %>
+                          <i class="far fa-star"></i>
+                        <% end %>
+                        <span>(0)</span>
                       <% end %>
                     </span>
                   </div>
@@ -86,9 +111,9 @@
           <% end %>
           <%# 4 %>
           <% if @question.answered? && @answer.ended? && current_user == @question.user%>
-            <p>Dejar review y descargar</p>
+            <%= button_to "Finalizar", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
             <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
-            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg", target: :_blank  %>
+            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg", html:{ target: :_blank } %>
           <% end %>
 
         </div>
