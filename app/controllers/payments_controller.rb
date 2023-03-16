@@ -39,6 +39,9 @@ class PaymentsController < ApplicationController
     payment_response = sdk.payment.create(payment_data)
     payment = payment_response[:response]
     resultado = JSON.parse(payment.to_json)
+    if resultado["status"] == "rejected"
+      redirect_to root_path
+    end
 
 
 
