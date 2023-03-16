@@ -1,5 +1,11 @@
+<%# <%= simple_form_for [@question, @answer, @review] do |f| %>
+  <%# <%= f.input :rating, label: "Rating:", required: true %>
+  <%# <%= f.input :comment, label: "Comentario", required: false %>
+  <%# <%= f.button :submit, class: "success-btn", value:"Finalizar" %>
+<%# <% end %>
+
 <%= simple_form_for [@question, @answer, @review] do |f| %>
-  <%= f.input :rating, label: "Rating:", required: true %>
+  <%= f.input :rating, label: "Rating:", required: true, collection: [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], input_html: { class: 'form-control' } %>
   <%= f.input :comment, label: "Comentario", required: false %>
   <%= f.button :submit, class: "success-btn", value:"Finalizar" %>
 <% end %>
