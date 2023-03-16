@@ -1,6 +1,6 @@
 <%= simple_form_for [@question, @answer] do |f| %>
-  <%= f.input :price, label: "$ Precio", required: true %>
-  <%= f.input :comment, label: "Comentario", required: true %>
-  <%= f.input :avg_time, label: "Tiempo estimado de respuesta:", required: true %>
-  <%= f.button :submit, class: "btn btn-flat", value:"Publicar producto" %>
+  <%= f.input :price, label: "$ Precio Final", required: true %>
+  <%= f.input :comment, label: "¿Por qué eres el indicado?", required: true %>
+  <%= f.input :avg_time, label: "Tiempo (horas) estimado de respuesta:", required: true %>
+  <%= f.button :submit, class: "success-btn", value:"Proponer" %>
 <% end %>

@@ -17,7 +17,8 @@ class AnswersController < ApplicationController
     @question.new_answer if @question.waiting?
     @question.save
     if @answer.save
-      redirect_to preguntas_path
+      #redirect_to preguntas_path
+      redirect_to question_answer_path(@question, @answer)
     else
       render :new, status: :unprocessable_entity
     end
