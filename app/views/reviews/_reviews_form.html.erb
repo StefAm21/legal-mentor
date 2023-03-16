@@ -4,7 +4,7 @@
   <%# <%= f.button :submit, class: "success-btn", value:"Finalizar" %>
 <%# <% end %>
 <%= simple_form_for [@question, @answer, @review] do |f| %>
-  <%= f.input :comment, label: "Comentario", required: false %>
   <%= f.input :rating, label: "Rating:", required: true %>
+  <%= f.input :comment, label: "Comentario", required: false %>
   <%= f.button :submit, class: "success-btn", value:"Finalizar" %>
 <% end %>
