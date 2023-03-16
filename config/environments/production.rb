@@ -18,9 +18,9 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   # Config SSL for Devise
-  # config.to_prepare { Devise::SessionsController.force_ssl }
-  # config.to_prepare { Devise::RegistrationsController.force_ssl }
-  # config.to_prepare { Devise::PasswordsController.force_ssl
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
