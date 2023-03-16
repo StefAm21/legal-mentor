@@ -13,7 +13,7 @@ module ApplicationHelper
     end
 
     # Add empty stars
-    (6 - rating.ceil).times do
+    (5 - rating.ceil).times do
       output += '<i class="far fa-star"></i>'
     end
 
