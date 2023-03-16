@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'studies/create'
-  get 'studies/update'
-  get 'studies/edit'
-  get 'studies/destroy'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -34,4 +30,6 @@ Rails.application.routes.draw do
     resources :studies, only: %i[create update destroy]
     resources :experiences, only: %i[create update destroy]
   end
+
+  get '/404', to: 'errors#not_found'
 end

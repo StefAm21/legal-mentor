@@ -106,3 +106,13 @@ body {
     display: inline-block !important;
   }
 }
+
+.label {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.label-green {
+  background-color: green;
+  color: #EDEDED;
+}

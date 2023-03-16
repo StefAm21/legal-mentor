@@ -70,6 +70,18 @@
                     <span class="mr-3">Precio Final: <b>$ <%= @answer.price %></b></span>
                   </p>
               </div>
+                <% case @answer.payment_status %>
+                <% when "sent" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Enviado</span></h5>
+                <% when "accepted" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta aceptada</span></h5>
+                <% when "paid" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta abonada</span></h5>
+                <% when "ended" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Consulta finalizada</span></h5>
+                <% else %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta rechazada</span></h5>
+                 <% end %>
             </div>
           </div>
           <hr>
@@ -101,10 +113,10 @@
               <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
               <% if @answer.photo.attached? %>
                 <%#= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
-                <h3> Preview: </h3>
+                <h4 class="mt-5">Preview:</h4>
                 <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
               <% end %>
-
+              <p> </p>
               <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81" %>
 
             </div>

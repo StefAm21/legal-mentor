@@ -2,7 +2,7 @@ class ExperiencesController < ApplicationController
   before_action :set_user, only: %i[create update edit]
   def create
     @experiences = Experience.new(experiences_params)
-    @user.experiences << @experience
+    @user.experiences << @experiences
     if @user.save
       redirect_to user_path(@user)
     else
