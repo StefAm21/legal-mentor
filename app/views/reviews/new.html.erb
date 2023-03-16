@@ -1,5 +1,15 @@
-<%= simple_form_for [@question, @answer, @review] do |f| %>
-  <%= f.input :comment %>
-  <%= f.input :rating %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container-h1 mt-3">
+  <h1>Danos una reseña para finalizar el proceso</h1>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-comment">
+        <div class="card-body">
+          <%= render "reviews_form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
