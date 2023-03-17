@@ -30,4 +30,6 @@ Rails.application.routes.draw do
     resources :studies, only: %i[create update destroy]
     resources :experiences, only: %i[create update destroy]
   end
+
+  get '/404', to: 'errors#not_found'
 end
