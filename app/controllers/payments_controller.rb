@@ -70,7 +70,7 @@ class PaymentsController < ApplicationController
 
 
     @payment = Payment.new
-    @payment.mp_id = resultado["id"].to_i
+    @payment.mp_id = resultado["id"]
     @payment.status = resultado["status"]
     @payment.status_detail = resultado["status_detail"]
     @answer = Answer.find(session[:answer_id])
@@ -82,12 +82,11 @@ class PaymentsController < ApplicationController
         @answer.save
         @question.save
         p "PASOOOOOOOOO POR EL IFFFFFFF------------------"
+        redirect_to payment_path(@payment)
       end
-      redirect_to payment_path(@payment)
     else
-      redirect_to root_path, alert: "Algo salio mal"
+      redirect_to questions_path, alert: "Algo salio mal"
     end
-
   end
 
   def show
