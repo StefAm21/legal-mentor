@@ -24,7 +24,11 @@
             <div class="row">
               <div class="col-12 text-center">
                 <%= link_to user_path(@answer.user), style: "text-decoration:none; color:inherit;" do %>
-                  <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
+                        <% if @answer.user.photo.attached? %>
+                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail"  %>
+                        <% else %>
+                          <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
+                        <% end %>
                   <h4 class="card-title">
                       <%= @answer.user.name%> <%= @answer.user.last_name  %>
                   </h4>
@@ -75,18 +79,6 @@
           <hr>
           <h4 class="mt-5">Oferta:</h4>
           <p><%= @answer.comment %></p>
-                <% case @answer.payment_status %>
-                <% when "sent" %>
-                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Enviado</span></h5>
-                <% when "accepted" %>
-                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta aceptada</span></h5>
-                <% when "paid" %>
-                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta abonada</span></h5>
-                <% when "ended" %>
-                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Consulta finalizada</span></h5>
-                <% else %>
-                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta rechazada</span></h5>
-                 <% end %>
           <%# 1 %>
           <% if @question.choosing? && @answer.sent? && current_user == @question.user%>
             <div class= "d-flex justify-content-between align-items-center">
@@ -117,7 +109,7 @@
                 <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
               <% end %>
               <p> </p>
-              <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81" %>
+              <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81", :target=>'_blank' %>
 
             </div>
           <% end %>
@@ -125,9 +117,20 @@
           <% if @question.answered? && @answer.ended? && current_user == @question.user%>
             <%= button_to "Finalizar", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
             <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
-            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg", html:{ target: :_blank } %>
+            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
           <% end %>
-
+          <% case @answer.payment_status %>
+          <% when "sent" %>
+            <h6 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Enviado</span></h6>
+          <% when "accepted" %>
+            <h6 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta aceptada</span></h6>
+          <% when "paid" %>
+            <h6 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta abonada</span></h6>
+          <% when "ended" %>
+            <h6 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Consulta finalizada</span></h6>
+          <% else %>
+            <h6 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta rechazada</span></h6>
+          <% end %>
         </div>
       </div>
     </div>
