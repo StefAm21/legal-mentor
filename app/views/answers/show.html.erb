@@ -39,10 +39,10 @@
                     </span>
                   </div>
                   <p class="card-text mt-4">
-                    <span class="mr-3">Tiempo de respuesta estimado: <b>2 hora/s</b></span>
+                    <span class="mr-3">Tiempo de respuesta estimado: <b><%= @answer.avg_time %></b></span>
                   </p>
                   <p class="card-text">
-                    <span class="mr-3">Precio Final: <b>$100</b></span>
+                    <span class="mr-3">Precio Final: <b>$ <%= @answer.price %></b></span>
                   </p>
               </div>
             </div>
