@@ -80,7 +80,7 @@
                 <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
               <% end %>
               <p> </p>
-              <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81" %>
+              <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81", :target=>'_blank' %>
 
             </div>
           <% end %>
@@ -88,7 +88,7 @@
           <% if @question.answered? && @answer.ended? && current_user == @question.user%>
             <p>Dejar review y descargar</p>
             <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
-            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg", target: :_blank  %>
+            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
           <% end %>
 
         </div>
