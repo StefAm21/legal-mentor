@@ -114,7 +114,7 @@
             <main>
               <div class="row mt-5">
                 <% if @user.reviews.any? %>
-                  <% @user.reviews.each do |review| %>
+                  <% @user.reviews.reverse.each do |review| %>
                     <div class="col-md-4 mb-4">
                       <div class="card-display">
                         <div class="card-body">
