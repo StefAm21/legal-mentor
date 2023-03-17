@@ -15,6 +15,7 @@
           <%# <% else %>
             <%# <%= star_rating(0) %>
           <%# <% end %>
+          <% if @user.lawyer? %>
           <span>
             <% if Review.any? %>
               <% count = @user.reviews.count %>
@@ -40,6 +41,7 @@
               <span>(0)</span>
             <% end %>
           </span>
+          <% end %>
       </div>
 
       <div class="info-section p-3">
@@ -53,8 +55,10 @@
       <!-- TAB CONTROLLERS -->
       <input id="panel-1-ctrl"
             class="panel-radios" type="radio" name="tab-radios" checked>
-      <input id="panel-2-ctrl"
+      <% if @user.lawyer? %>
+        <input id="panel-2-ctrl"
             class="panel-radios" type="radio" name="tab-radios">
+      <% end %>
 
       <!-- TABS LIST -->
       <ul id="tabs-list">
@@ -64,10 +68,12 @@
             <label class="panel-label"
                   for="panel-1-ctrl"><i class="fa-solid fa-address-card"></i> Profile</label>
           </li><!--INLINE-BLOCK FIX
-      --><li id="li-for-panel-2">
-            <label class="panel-label"
+      -->   <% if @user.lawyer? %>
+              <li id="li-for-panel-2">
+                <label class="panel-label"
                   for="panel-2-ctrl"><i class="fa-solid fa-star"></i> Reviews</label>
-          </li>
+              </li>
+            <% end %>
       </ul>
 
       <article id="panels">
