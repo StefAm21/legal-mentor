@@ -19,7 +19,7 @@ puts "creando questions"
 # Create questions for common_user
 Question.create!(
   title: '¿Cuáles son algunos consejos para organizar los impuestos de tu startup?',
-  description: "Como propietario de una startup, la organización de los impuestos es crucial para garantizar el cumplimiento y evitar penalizaciones. ¿Cuáles son algunos consejos prácticos para ayudarme a organizar eficazmente los impuestos de mi startup?",
+  description: "Como propietario de una startup, la organización de los impuestos es crucial para garantizar el cumplimiento y evitar penalizaciones.",
   category: "Impuestos",
   status: "choosing",
   user: common_user
@@ -127,7 +127,7 @@ common_user.questions.each do |question|
   Answer.create!(
     question: question,
     price: 120,
-    comment: 'Soy un especialista en esta área y puedo proporcionar un asesoramiento detallado y práctico para su situación específica. Mis años de experiencia y conocimientos en este campo me permiten tener una comprensión profunda',
+    comment: 'Soy un especialista en esta área y puedo proporcionar un asesoramiento detallado y práctico para su situación específica.',
     avg_time: 2.5,
     payment_status: 'sent',
     user: another_lawyer,
