@@ -25,9 +25,9 @@
               <div class="col-12 text-center">
                 <%= link_to user_path(@answer.user), style: "text-decoration:none; color:inherit;" do %>
                         <% if @answer.user.photo.attached? %>
-                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail"  %>
+                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail", width: 150, height: 150 %>
                         <% else %>
-                          <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
+                          <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png", width= 150, height= 150/>
                         <% end %>
                   <h4 class="card-title">
                       <%= @answer.user.name%> <%= @answer.user.last_name  %>
@@ -115,9 +115,10 @@
           <% end %>
           <%# 4 %>
           <% if @question.answered? && @answer.ended? && current_user == @question.user%>
-            <%= button_to "Finalizar", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
+            <%= button_to "Dejar Review", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
             <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
-            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
+            <%#= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
+            <%= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), class:"button-82 btn-lg border", target: "_blank" %>
           <% end %>
           <% case @answer.payment_status %>
           <% when "sent" %>
