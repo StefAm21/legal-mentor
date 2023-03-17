@@ -115,9 +115,10 @@
           <% end %>
           <%# 4 %>
           <% if @question.answered? && @answer.ended? && current_user == @question.user%>
-            <%= button_to "Finalizar", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
+            <%= button_to "Dejar Review", new_question_answer_review_path(@question, @answer), method: :get, class:"success-btn" %>
             <%#= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload) %>
-            <%= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
+            <%#= button_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), method: :get, class:"button-81 btn-lg" %>
+            <%= link_to "Descargar Documento", cl_image_path(@answer.photo.key, resource_type: :image, type: :upload), class:"button-82 btn-lg border", target: "_blank" %>
           <% end %>
           <% case @answer.payment_status %>
           <% when "sent" %>
