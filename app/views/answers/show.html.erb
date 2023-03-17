@@ -45,7 +45,18 @@
                     <span class="mr-3">Precio Final: <b>$ <%= @answer.price %></b></span>
                   </p>
               </div>
-                  <h5 class="text-end ms-3">Estado: <%= @answer.payment_status %></h5>
+                <% case @answer.payment_status %>
+                <% when "sent" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Enviado</span></h5>
+                <% when "accepted" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta aceptada</span></h5>
+                <% when "paid" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta abonada</span></h5>
+                <% when "ended" %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Consulta finalizada</span></h5>
+                <% else %>
+                  <h5 class="text-end ms-3 mt-3">Estado: <span class="label label-green">Respuesta rechazada</span></h5>
+                 <% end %>
             </div>
           </div>
           <hr>
