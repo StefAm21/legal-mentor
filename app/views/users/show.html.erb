@@ -10,13 +10,37 @@
               <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
           <% end %>
         <h5><%= @user.name %> <%= @user.last_name %></h5>
-          <% if @user.reviews.any? %>
-            <%= star_rating(@user.reviews.average(:rating).round(1)) %>
-          <% else %>
-            <%= star_rating(0) %>
-          <% end %>
+          <%# <% if @user.reviews.any? %>
+            <%# <%= star_rating(@user.reviews.average(:rating).round(1)) %>
+          <%# <% else %>
+            <%# <%= star_rating(0) %>
+          <%# <% end %>
+          <span>
+            <% if Review.any? %>
+              <% count = @user.reviews.count %>
+              <% sum = @user.reviews.sum(:rating) %>
+              <% rating = (sum/count.to_f).round(2) %>
+              <% black_star = (sum/count).to_i %>
+              <% rating.kind_of?(Float) ? half_star = 1 : half_star = 0 %>
+              <% white_star = 5 - black_star - half_star %>
+              <% black_star.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% half_star.times do %>
+                <i class="fas fa-star-half-alt"></i>
+              <% end %>
+              <% white_star.times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+              <%= "(#{rating.round(1)})" %>
+            <% else %>
+              <% 5.times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+              <span>(0)</span>
+            <% end %>
+          </span>
       </div>
-
 
       <div class="info-section p-3">
         <hr>
