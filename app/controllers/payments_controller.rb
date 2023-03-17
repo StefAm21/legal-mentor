@@ -84,6 +84,7 @@ class PaymentsController < ApplicationController
         p "PASOOOOOOOOO POR EL IFFFFFFF------------------"
         redirect_to payment_path(@payment)
       end
+      #Aqui falta poner un if para cuando el status es "in_process"
     else
       redirect_to questions_path, alert: "Algo salio mal"
     end
