@@ -24,7 +24,11 @@
             <div class="row">
               <div class="col-12 text-center">
                 <%= link_to user_path(@answer.user), style: "text-decoration:none; color:inherit;" do %>
-                  <img src="https://via.placeholder.com/100" class="rounded-circle img-thumbnail" alt="User Image">
+                        <% if @answer.user.photo.attached? %>
+                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail" %>
+                        <% else %>
+                          <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
+                        <% end %>
                   <h4 class="card-title">
                       <%= @answer.user.name%> <%= @answer.user.last_name  %>
                   </h4>
