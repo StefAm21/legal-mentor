@@ -77,10 +77,10 @@
               <%#= cl_image_tag "#{@answer.photo.key}.png", :width=>600, :height=>700 %>
               <% if @answer.photo.attached? %>
                 <%#= cl_image_tag @answer.photo.key, :width=>600, :height=>700 %>
-                <h3> Preview: </h3>
+                <h4 class="mt-5">Preview:</h4>
                 <%= cl_image_tag "#{@answer.photo.key}.jpg", :width=>600, :height=>700, :page=>1, :crop=>"fill"%>
               <% end %>
-
+              <p> </p>
               <%= button_to "Enviar respuesta", response_path(@answer), method: :get, class:"button-81" %>
 
             </div>
