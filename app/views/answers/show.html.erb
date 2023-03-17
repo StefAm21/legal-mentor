@@ -25,7 +25,7 @@
               <div class="col-12 text-center">
                 <%= link_to user_path(@answer.user), style: "text-decoration:none; color:inherit;" do %>
                         <% if @answer.user.photo.attached? %>
-                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail" %>
+                          <%= cl_image_tag @answer.user.photo.key, class: "rounded-circle img-thumbnail"  %>
                         <% else %>
                           <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
                         <% end %>
