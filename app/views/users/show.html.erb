@@ -4,8 +4,8 @@
     <div class="profile-info-card pb-3 my-5">
       <a href="/users/<%= @user.id %>/edit" class="m-3"><i class="fa-solid fa-pen-to-square mt-3"></i></a>
       <div class="card-info-header p-3">
-        <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "rounded-circle img-thumbnail mb-2" %>
+        <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, class: "rounded-circle img-thumbnail mb-2" %>
           <% else %>
               <img class="rounded-circle img-thumbnail mb-2" src="https://www.saberescincopuntocero.com/wp-content/uploads/2020/10/PERFIL-VACIO.png"/>
           <% end %>
